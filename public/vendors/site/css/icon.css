@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'icon';
+    src: url('../fonts/icon.eot');
+    src: url('../fonts/icon.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/icon.woff') format('woff'),
+         url('../fonts/icon.ttf') format('truetype'),
+         url('../fonts/icon.svg#icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[class*='icon-']:before{
+	display: inline-block;
+   font-family: 'icon';
+   font-style: normal;
+   font-weight: normal;
+   line-height: 1;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale
+}
+.icon-1achievements:before{content:'\0041';}
+.icon-2inactive:before{content:'\0042';}
+.icon-3age:before{content:'\0043';}
+.icon-4building:before{content:'\0044';}
+.icon-5arrowDown:before{content:'\0045';}
+.icon-6arrowUp:before{content:'\0046';}
+.icon-7arrowRight:before{content:'\0047';}
+.icon-8arrowLeft:before{content:'\0048';}
+.icon-9artsDesign:before{content:'\0049';}
+.icon-10bot:before{content:'\004a';}
+.icon-11businessAgement:before{content:'\004b';}
+.icon-12camera:before{content:'\004c';}
+.icon-13crediCcards:before{content:'\004d';}
+.icon-14careerDevelopment:before{content:'\004e';}
+.icon-15check:before{content:'\004f';}
+.icon-16compare:before{content:'\0050';}
+.icon-17computer:before{content:'\0051';}
+.icon-18courses:before{content:'\0052';}
+.icon-19creditPayment:before{content:'\0053';}
+.icon-20document:before{content:'\0054';}
+.icon-21down:before{content:'\0055';}
+.icon-22up:before{content:'\0056';}
+.icon-23right:before{content:'\0057';}
+.icon-24left:before{content:'\0058';}
+.icon-25duration:before{content:'\0059';}
+.icon-26edit:before{content:'\005a';}
+.icon-27educationTraining:before{content:'\0061';}
+.icon-28engineering:before{content:'\0062';}
+.icon-29envelope:before{content:'\0063';}
+.icon-30EventsConernets:before{content:'\0064';}
+.icon-31facebook:before{content:'\0065';}
+.icon-32favoriteHeart:before{content:'\0066';}
+.icon-33featured:before{content:'\0067';}
+.icon-34filters:before{content:'\0068';}
+.icon-35flight:before{content:'\0069';}
+.icon-36fundingType:before{content:'\006a';}
+.icon-37gender:before{content:'\006b';}
+.icon-38gift:before{content:'\006c';}
+.icon-39global:before{content:'\006d';}
+.icon-40google:before{content:'\006e';}
+.icon-41handCool:before{content:'\006f';}
+.icon-42healthMedicine:before{content:'\0070';}
+.icon-43home:before{content:'\0071';}
+.icon-44idea:before{content:'\0072';}
+.icon-45law:before{content:'\0073';}
+.icon-46link:before{content:'\0074';}
+.icon-47linkedin:before{content:'\0075';}
+.icon-48lives:before{content:'\0076';}
+.icon-49loadingMore:before{content:'\0077';}
+.icon-50location:before{content:'\0078';}
+.icon-51lock:before{content:'\0079';}
+.icon-52lockSolid:before{content:'\007a';}
+.icon-53lunch:before{content:'\0030';}
+.icon-54medal:before{content:'\0031';}
+.icon-55multimedia:before{content:'\0032';}
+.icon-56naturalScience:before{content:'\0033';}
+.icon-57notification:before{content:'\0034';}
+.icon-58opportunityLocation:before{content:'\0035';}
+.icon-59opportunityType:before{content:'\0036';}
+.icon-60otherMenu:before{content:'\0037';}
+.icon-61pin:before{content:'\0038';}
+.icon-62plus:before{content:'\0039';}
+.icon-63popularCourses:before{content:'\0021';}
+.icon-64profile:before{content:'\0022';}
+.icon-65quality:before{content:'\0023';}
+.icon-66save:before{content:'\0024';}
+.icon-67school:before{content:'\0025';}
+.icon-68search:before{content:'\0026';}
+.icon-69shape:before{content:'\0027';}
+.icon-70solidEdit:before{content:'\0028';}
+.icon-71starts:before{content:'\0029';}
+.icon-72thumbDown:before{content:'\002a';}
+.icon-73thumbsUp:before{content:'\002b';}
+.icon-74time:before{content:'\002c';}
+.icon-75towFingers:before{content:'\002d';}
+.icon-76twitter:before{content:'\002e';}
+.icon-77upload:before{content:'\002f';}
+.icon-78user:before{content:'\005b';}
+.icon-79user-full:before{content:'\005c';}
+.icon-80whatsapp:before{content:'\005d';}
+.icon-81work:before{content:'\005e';}
+.icon-82wrong:before{content:'\005f';}
