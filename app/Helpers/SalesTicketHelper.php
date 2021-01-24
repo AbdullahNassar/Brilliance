@@ -20,6 +20,8 @@ class SalesTicketHelper{
             'phone_number' => $request['phone_number'],
             'email' => $request['email'],
             'sales_id' => $request['sales_id'],
+            'user_id' => $request['user_id'],
+            'others' => $request['others'],
             'program_id' => $request['program_id'],
             'diplom_id' => $request['diplom_id'],
             'status' => 0,

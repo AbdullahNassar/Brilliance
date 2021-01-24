@@ -47,23 +47,23 @@
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='admin.sales.manager.leads') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('admin.sales.manager.leads')}}">All</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.assigned') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.assigned')}}">Assigned</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.unassigned') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.unassigned')}}">Unassigned</a>
-                <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.manager.follow') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.manager.follow')}}">Follow Up</a>
+                <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.manager.follow') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.manager.follow')}}">Time/ Not Decided</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.manager.potential') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.manager.potential')}}">Potential</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.manager.hold') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.manager.hold')}}">Hold</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.manager.noAnswer') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.manager.noAnswer')}}">No Answer</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.manager.interested') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.manager.interested')}}">Interested</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.manager.outOfReach') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.manager.outOfReach')}}">Out Of Reach</a>
-                <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.manager.closed') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.manager.closed')}}">Closed</a>
+                <!--<a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.manager.closed') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.manager.closed')}}">Closed</a>-->
                 @endif
                 @if(Route::currentRouteName()=='admin.sales.advisor.leads' || Route::currentRouteName()=='sales.leads.follow' || Route::currentRouteName()=='sales.leads.potential' || Route::currentRouteName()=='sales.leads.hold' || Route::currentRouteName()=='sales.leads.noAnswer' || Route::currentRouteName()=='sales.leads.interested' || Route::currentRouteName()=='sales.leads.outOfReach' || Route::currentRouteName()=='sales.leads.closed')
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='admin.sales.advisor.leads') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('admin.sales.advisor.leads')}}">All</a>
-                <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.follow') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.follow')}}">Follow Up</a>
+                <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.follow') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.follow')}}">Time/ Not Decided</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.potential') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.potential')}}">Potential</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.hold') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.hold')}}">Hold</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.noAnswer') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.noAnswer')}}">No Answer</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.interested') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.interested')}}">Interested</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.outOfReach') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.outOfReach')}}">Out Of Reach</a>
-                <a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.closed') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.closed')}}">Closed</a>
+                <!--<a style="margin-right: 5px; @if(Route::currentRouteName()=='sales.leads.closed') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('sales.leads.closed')}}">Closed</a>-->
                 @endif
                 <form id="assign" method="post">
                 {{csrf_field()}}
@@ -71,54 +71,48 @@
                         <table id="leads_datatable" class="table display responsive nowrap">
                             <thead>
                                 <tr>
-                                    <th> </th>
+                                    <th>
+                                        <label class="ckbox">
+                                            <input id="checkall" name="checkall" type="checkbox">
+                                            <span> </span>
+                                        </label>
+                                    </th>
                                     <th>Full Name</th>
                                     <th>Mobile</th>
                                     <th>Email</th>
+                                    <th>Program</th>
                                     <th>Status</th>
-                                    @if(Route::currentRouteName()=='sales.leads.assigned') <th>Advisor</th>@endif
+                                    @if(Route::currentRouteName()=='admin.sales.manager.leads' || Route::currentRouteName()=='sales.leads.unassigned' || Route::currentRouteName()=='sales.leads.assigned' || Route::currentRouteName()=='sales.manager.follow' || Route::currentRouteName()=='sales.manager.potential' || Route::currentRouteName()=='sales.manager.hold' || Route::currentRouteName()=='sales.manager.noAnswer' || Route::currentRouteName()=='sales.manager.interested' || Route::currentRouteName()=='sales.manager.outOfReach' || Route::currentRouteName()=='sales.manager.closed') <th>Advisor</th>@endif
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($leads as $item)
+                                @if($item->activity_status != "Closed")
                                     <tr>
-                                        <th>{{$loop->index +1}}</th>
+                                        <th>
+                                            <label class="ckbox">
+                                                <input id="ckbox{{$item->id}}" name="check{{$item->id}}" type="checkbox">
+                                                <span> {{$loop->index +1}}</span>
+                                            </label>
+                                            <input value="{{$item->id}}" id="checked{{$item->id}}" name="checked{{$item->id}}" type="hidden">
+                                        </th>
                                         <th><a href="{{ route('lead.profile' , ['id' => $item->id]) }}">{{$item->full_name}}</a></th>
                                         <th>{{$item->phone_number}}</th>
                                         <th>{{$item->email}}</th>
+                                        <th>{{$item->form_name}}</th>
                                         <th>{{$item->activity_status}} @if($item->next_call != null) | {{$item->next_call}} @endif</th>
-                                        @if(Route::currentRouteName()=='sales.leads.assigned') <th>{{$item->user->name}}</th>@endif
+                                        @if(Route::currentRouteName()=='admin.sales.manager.leads' || Route::currentRouteName()=='sales.leads.unassigned' || Route::currentRouteName()=='sales.leads.assigned' || Route::currentRouteName()=='sales.manager.follow' || Route::currentRouteName()=='sales.manager.potential' || Route::currentRouteName()=='sales.manager.hold' || Route::currentRouteName()=='sales.manager.noAnswer' || Route::currentRouteName()=='sales.manager.interested' || Route::currentRouteName()=='sales.manager.outOfReach' || Route::currentRouteName()=='sales.manager.closed') <th>{{$item->user->name}}</th>@endif
                                         <th>
-                                        @if(Route::currentRouteName()=='sales.leads.unassigned' || Route::currentRouteName()=='sales.leads.assigned')
-                                            <label class="ckbox">
-                                                <input id="ckbox{{$item->id}}" name="check{{$item->id}}" type="checkbox">
-                                                <span> </span>
-                                            </label>
-                                            <input value="{{$item->id}}" id="checked{{$item->id}}" name="checked{{$item->id}}" type="hidden">
-                                        @elseif(Route::currentRouteName()=='sales.leads.unassigned' || Route::currentRouteName()=='sales.leads.assigned' || Route::currentRouteName()=='sales.manager.follow' || Route::currentRouteName()=='sales.manager.potential' || Route::currentRouteName()=='sales.manager.hold' || Route::currentRouteName()=='sales.manager.noAnswer' || Route::currentRouteName()=='sales.manager.interested' || Route::currentRouteName()=='sales.manager.outOfReach' || Route::currentRouteName()=='sales.manager.closed')
-                                            <label class="ckbox">
-                                                <input id="ckbox{{$item->id}}" name="check{{$item->id}}" type="checkbox">
-                                                <span> </span>
-                                            </label>
-                                            <input value="{{$item->id}}" id="checked{{$item->id}}" name="checked{{$item->id}}" type="hidden">
-                                        @elseif(Route::currentRouteName()=='admin.sales.advisor.leads' || Route::currentRouteName()=='sales.leads.follow' || Route::currentRouteName()=='sales.leads.potential' || Route::currentRouteName()=='sales.leads.hold' || Route::currentRouteName()=='sales.leads.noAnswer' || Route::currentRouteName()=='sales.leads.interested' || Route::currentRouteName()=='sales.leads.outOfReach' || Route::currentRouteName()=='sales.leads.closed')
                                             <a href="{{ route('sales.activity.add' , ['id' => $item->id]) }}" class="text-primary edit" title="Add Activity"><i class="fa fa-edit"></i></a> 
-                                            <label class="ckbox">
-                                                <input id="ckbox{{$item->id}}" name="check{{$item->id}}" type="checkbox">
-                                                <span> </span>
-                                            </label>
-                                            <input value="{{$item->id}}" id="checked{{$item->id}}" name="checked{{$item->id}}" type="hidden">
-                                        @else
-                                            <a href="{{ route('sales.activity.add' , ['id' => $item->id]) }}" class="text-primary edit" title="Add Activity"><i class="fa fa-edit"></i></a> 
-                                        @endif
                                         </th>
                                     </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
                     </div><!-- table-wrapper -->
-                    @if(Route::currentRouteName()=='sales.leads.unassigned' || Route::currentRouteName()=='sales.leads.assigned' || Route::currentRouteName()=='sales.manager.follow' || Route::currentRouteName()=='sales.manager.potential' || Route::currentRouteName()=='sales.manager.hold' || Route::currentRouteName()=='sales.manager.noAnswer' || Route::currentRouteName()=='sales.manager.interested' || Route::currentRouteName()=='sales.manager.outOfReach' || Route::currentRouteName()=='sales.manager.closed')
+                    @if(Route::currentRouteName()=='admin.sales.manager.leads' || Route::currentRouteName()=='sales.leads.unassigned' || Route::currentRouteName()=='sales.leads.assigned' || Route::currentRouteName()=='sales.manager.follow' || Route::currentRouteName()=='sales.manager.potential' || Route::currentRouteName()=='sales.manager.hold' || Route::currentRouteName()=='sales.manager.noAnswer' || Route::currentRouteName()=='sales.manager.interested' || Route::currentRouteName()=='sales.manager.outOfReach' || Route::currentRouteName()=='sales.manager.closed')
                     <br>
                     <input value="1" name="status" type="hidden">
                     <div class="form-layout form-layout-1">

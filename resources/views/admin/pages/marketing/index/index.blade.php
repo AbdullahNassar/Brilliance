@@ -52,41 +52,50 @@
                         <table id="leads_datatable" class="table display responsive nowrap">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>
+                                    @if(Route::currentRouteName()=='marketing.leads.unassigned')
+                                        <label class="ckbox">
+                                            <input id="checkall" name="checkall" type="checkbox">
+                                            <span> </span>
+                                        </label>
+                                    @else
+                                    #
+                                    @endif
+                                    </th>
                                     <th>Full Name</th>
-                                    <th>Company</th>
                                     <th>Mobile</th>
+                                    <th>Program</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($leads as $item)
                                     <tr>
-                                        <th>{{$loop->index +1}}</th>
-                                        <th>{{$item->full_name}}</th>
-                                        <th>{{$item->company_name}}</th>
-                                        <th>{{$item->phone_number}}</th>
-                                        <th>
                                         @if(Route::currentRouteName()=='marketing.leads.unassigned')
-                                            <label class="ckbox">
+                                        <th><label class="ckbox">
                                                 <input id="ckbox{{$item->id}}" name="check{{$item->id}}" type="checkbox">
-                                                <span> </span>
+                                                <span> {{$loop->index +1}}</span>
                                             </label>
-                                            <input id="checked{{$item->id}}" name="checked{{$item->id}}" type="hidden"> 
+                                            <input id="checked{{$item->id}}" name="checked{{$item->id}}" type="hidden"> </th>
                                         @else
-                                        <a href="{{ route('marketing.leads.edit' , ['id' => $item->id]) }}" class="text-primary edit" title="Edit Lead"><i class="fa fa-edit"></i></a>
+                                        <th>{{$loop->index +1}}</th>
                                             <!--<a title="Delete program" href="#" class="text-danger btndelet" id="{{$item->id}}"><i class="fa fa-close"></i></a>-->
                                         @endif
+                                        <th>{{$item->full_name}}</th>
+                                        <th>{{$item->phone_number}}</th>
+                                        <th>{{$item->form_name}}</th>
+                                        <th>
+                                        <a href="{{ route('marketing.leads.edit' , ['id' => $item->id]) }}" class="text-primary edit" title="Edit Lead"><i class="fa fa-edit"></i></a>
                                         </th>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div><!-- table-wrapper -->
+                    @if(Route::currentRouteName()=='marketing.leads.unassigned')
                     <br>
                     <div class="form-layout form-layout-1">
                         <div class="row">
-                            @if(Route::currentRouteName()=='marketing.leads.unassigned')
                             <div class="col-lg-6">
                                 <div class="form-group pmd-textfield pmd-textfield-floating-label">
                                     <label class="control-label">Sales Managers</label>
@@ -103,9 +112,10 @@
                                     <button class="btn btn-oblong btn-outline-primary mg-b-10 float-right" type="submit"}}">Assign Selected</button>
                                 </div>
                             </div>
-                            @endif
+                            
                         </div>
                     </div>
+                    @endif
                 </form>
             </div><!-- br-section-wrapper -->
         </div><!-- br-pagebody -->

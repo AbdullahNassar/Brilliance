@@ -103,6 +103,7 @@ class ProgramHelper{
 
         $course = ProgramCourse::create([
             'name' => $request['name'],
+            'credits' => $request['credits'],
             'program_id' => $request['program_id'],
             'active' => $active,
         ]); 
@@ -140,6 +141,7 @@ class ProgramHelper{
 		if(ProgramCourse::find($id)) {
             $course = ProgramCourse::where('id',$id)->update([
                 'name' => $request['name'],
+                'credits' => $request['credits'],
                 'program_id' => $request['program_id'],
                 'active' => $active,
             ]);

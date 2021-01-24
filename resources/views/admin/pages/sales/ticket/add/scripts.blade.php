@@ -42,7 +42,7 @@
         });
     </script>
     <script type="text/javascript">
-        /* Nice Scroll */
+        /* Nice Scroll 
         $(document).ready(function() {
             "use strict";
             $("html").niceScroll({
@@ -60,7 +60,7 @@
                 horizrailenabled: false
             });
             
-        });
+        });*/
     </script>
     <script type="text/javascript">
         function ShowHideDiv() {
@@ -108,7 +108,8 @@
                     success:function(data)
                     {
                         toastr.success(data.original.data.message, 'Success!', {timeOut: 5000});
-                        window.history.back();
+                        //window.history.back();
+                        window.location.href = "{{URL::to('/admin/tickets')}}";
                     },
                     error: function(data) { 
                         var error = data.responseJSON.errors;
@@ -119,5 +120,32 @@
                 })
             });
         });
+    </script>
+    <script type="text/javascript">
+        function sourceFunction() {
+            var source = document.getElementById("source_list");
+            if(source.value == 'Referral'){
+                document.getElementById("others").style.display = "none";
+                document.getElementById("referral").style.display = "block";
+                document.getElementById("other_input").value = "";
+                document.getElementById('user_list').required = true;
+                document.getElementById('other_input').required = false;
+            }
+            if(source.value == 'Others'){
+                document.getElementById('other_input').disabled = false;
+                document.getElementById('other_input').required = true;
+                document.getElementById("others").style.display = "block";
+                document.getElementById("referral").style.display = "none";
+                document.getElementById("user_list").value = "";
+                document.getElementById('user_list').required = false;
+            }
+            if(source.value != 'Others' && source.value != 'Referral'){
+                document.getElementById('other_input').disabled = true;
+                document.getElementById('other_input').required = false;
+                document.getElementById("referral").style.display = "none";
+                document.getElementById("others").style.display = "block";
+                document.getElementById('user_list').required = false;
+            }
+        }
     </script>
 @endsection

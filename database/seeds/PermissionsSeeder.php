@@ -13,30 +13,37 @@ class PermissionsSeeder extends Seeder
     {
         $permissions = [
             [
-                'name' => 'programs',
+                'name' => 'sales',
+                'guard_name' => 'web',
             ],
             [
-                'name' => 'articles',
+                'name' => 'marketing',
+                'guard_name' => 'web',
             ],
             [
-                'name' => 'universities',
+                'name' => 'sales-manager',
+                'guard_name' => 'web',
             ],
             [
-                'name' => 'countries',
+                'name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
-                'name' => 'messages',
+                'name' => 'ceo',
+                'guard_name' => 'web',
             ],
             [
-                'name' => 'users',
+                'name' => 'user',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'guest',
+                'guard_name' => 'web',
             ],
         ];
-        foreach ($permissions as $item) {
+        foreach($permissions as $item) {
             $obj = Permission::where('name', $item['name'])->first();
-            if (!$obj) {
+            if(!$obj) {
                 Permission::create($item);
             }
         }

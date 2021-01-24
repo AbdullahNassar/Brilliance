@@ -40,7 +40,6 @@
         <h4 class="tx-gray-800 mg-b-5">Sales Tickets Form</h4>
         <p class="mg-b-0">Forms are used to collect ticket information with different element types of input, select, checkboxes, radios and more.</p>
       </div>
-
       <div class="br-pagebody">
         <div class="br-section-wrapper">
           <div class="form-layout form-layout-1">
@@ -48,6 +47,54 @@
             {{csrf_field()}}
             <input type="hidden" name="sales_id" value="{{Auth::user()->id}}">
             <div class="row mg-b-25">
+              <div class="col-lg-6">
+                <div id="fnWrapper2" class="parsley-input">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Full Name</label>
+                      <input class="form-control" type="text" name="full_name" data-parsley-class-handler="#fnWrapper2" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div id="lnWrapper3" class="parsley-input">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Phone Number</label>
+                      <input class="form-control" type="text" name="phone_number" data-parsley-class-handler="#lnWrapper3" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div id="fnWrapper4" class="parsley-input">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Email</label>
+                      <input class="form-control" type="email" name="email" data-parsley-class-handler="#fnWrapper4" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div id="lnWrapper1" class="parsley-input">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Previous Study</label>
+                      <input class="form-control" type="text" name="study" data-parsley-class-handler="#lnWrapper1" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div id="lnWrapper2" class="parsley-input">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Job Title</label>
+                      <input class="form-control" type="text" name="job_title" data-parsley-class-handler="#lnWrapper2" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div id="fnWrapper3" class="parsley-input">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Company Name</label>
+                      <input class="form-control" type="text" name="company_name" data-parsley-class-handler="#fnWrapper3" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
               <div class="col-lg-4">
                 <label class="control-label">Choose: </label>
               </div><!-- col-3 -->
@@ -73,7 +120,7 @@
                           data-parsley-errors-container="#slErrorContainer1" style="width:100%" disabled>
                         <option></option>
                         @foreach($programs as $program)
-                          <option value="{{$program->id}}">{{$program->name}}</option>
+                          <option value="{{$program->id}}">{{$program->name}} | {{$program->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer1"></div>
@@ -90,7 +137,7 @@
                           data-parsley-errors-container="#slErrorContainer2" style="width:100%" disabled>
                         <option></option>
                         @foreach($diploms as $diplom)
-                          <option value="{{$diplom->id}}">{{$diplom->name}}</option>
+                          <option value="{{$diplom->id}}">{{$diplom->name}} | {{$diplom->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer2"></div>
@@ -99,58 +146,54 @@
                 </div>
               </div>
               <div class="col-lg-6">
-                <div id="fnWrapper1" class="parsley-input">
-                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <div class="d-flex">
+                  <div id="slWrapper3" class="parsley-select" style="width:100%">
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Source</label>
-                      <input class="form-control" type="text" name="source" data-parsley-class-handler="#fnWrapper1" required autocomplete="off">
+                      <select id="source_list" onchange="sourceFunction()" class="form-control pmd-select2 select2-show-search" name="source" data-parsley-class-handler="#slWrapper3"
+                          data-parsley-errors-container="#slErrorContainer3" style="width:100%">
+                        <option></option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Twitter">Twitter</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Youtube">Youtube</option>
+                        <option value="SMS">SMS</option>
+                        <option value="eMail">eMail</option>
+                        <option value="Website">Website</option>
+                        <option value="Landing Page">Landing Page</option>
+                        <option value="Google Ads">Google Ads</option>
+                        <option value="Linkedin">Linkedin</option>
+                        <option value="Walk in">Walk in</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Others">Others</option>
+                      </select>
+                      <div id="slErrorContainer3"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div id="lnWrapper1" class="parsley-input">
-                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Previous Study</label>
-                      <input class="form-control" type="text" name="study" data-parsley-class-handler="#lnWrapper1" required autocomplete="off">
+              <div class="col-lg-6" style="display:none;" id="referral">
+                <div class="d-flex">
+                  <div id="slWrapper4" class="parsley-select" style="width:100%">
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Referral</label>
+                      <select id="user_list" class="form-control pmd-select2 select2-show-search" name="user_id" data-parsley-class-handler="#slWrapper4"
+                          data-parsley-errors-container="#slErrorContainer4" style="width:100%">
+                        <option></option>
+                        @foreach($users as $user)
+                          <option value="{{$user->id}}">{{$user->name}}</option>
+                        @endforeach
+                      </select>
+                      <div id="slErrorContainer4"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div id="fnWrapper2" class="parsley-input">
+              <div class="col-lg-6" id="others">
+                <div id="fnWrapper7" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Full Name</label>
-                      <input class="form-control" type="text" name="full_name" data-parsley-class-handler="#fnWrapper2" required autocomplete="off">
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div id="lnWrapper2" class="parsley-input">
-                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Job Title</label>
-                      <input class="form-control" type="text" name="job_title" data-parsley-class-handler="#lnWrapper2" required autocomplete="off">
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div id="fnWrapper3" class="parsley-input">
-                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Company Name</label>
-                      <input class="form-control" type="text" name="company_name" data-parsley-class-handler="#fnWrapper3" required autocomplete="off">
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div id="lnWrapper3" class="parsley-input">
-                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Phone Number</label>
-                      <input class="form-control" type="text" name="phone_number" data-parsley-class-handler="#lnWrapper3" required autocomplete="off">
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div id="fnWrapper4" class="parsley-input">
-                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Email</label>
-                      <input class="form-control" type="email" name="email" data-parsley-class-handler="#fnWrapper4" required autocomplete="off">
+                      <label class="control-label">Others</label>
+                      <input class="form-control" type="text" id="other_input" name="others" data-parsley-class-handler="#fnWrapper7" disabled autocomplete="off">
                   </div>
                 </div>
               </div>

@@ -37,7 +37,7 @@
         });
     </script>
     <script type="text/javascript">
-        /* Nice Scroll */
+        /* Nice Scroll 
         $(document).ready(function() {
             "use strict";
             $("html").niceScroll({
@@ -54,7 +54,7 @@
                 zindex: "999",
                 horizrailenabled: false
             });
-        });
+        });*/
     </script>
     <script>
         $.ajaxSetup({
@@ -70,9 +70,26 @@
                 if(this.checked) {
                     $('#ckbox{{$item->id}}').val(1);
                     $('#checked{{$item->id}}').val({{$item->id}});
+                }else{
+                    $('#ckbox{{$item->id}}').val(0);
                 }
             });
             @endforeach
+
+            $("#checkall").change(function() {
+                if(this.checked) {
+                    @foreach($leads as $item)
+                        document.getElementById("ckbox{{$item->id}}").checked = true;
+                        $('#ckbox{{$item->id}}').val(1);
+                        $('#checked{{$item->id}}').val({{$item->id}});
+                    @endforeach
+                }else{
+                    @foreach($leads as $item)
+                        document.getElementById("ckbox{{$item->id}}").checked = false;
+                        $('#ckbox{{$item->id}}').val(0);
+                    @endforeach
+                }
+            });
             $('#leads_datatable').DataTable({
                 "columns": [
                     { "orderable": true },

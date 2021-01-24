@@ -6,7 +6,7 @@
     <meta name="author" content="ThemePixels">
     <meta name="csrf_token" content="{{csrf_token()}}">
 @endsection
-@section('title','Diploms')
+@section('title','Diplomas')
 @section('styles')
     <link href="{{asset('vendors/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/lib/Ionicons/css/ionicons.css')}}" rel="stylesheet">
@@ -33,14 +33,14 @@
     <div class="br-pageheader pd-y-15 pd-l-20">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
             <a class="breadcrumb-item" href="{{route('dashboard')}}">Brilliance</a>
-            <a class="breadcrumb-item" href="{{route('admin.diploms')}}">Diploms</a>
-            <span class="breadcrumb-item active">Diploms Table</span>
+            <a class="breadcrumb-item" href="{{route('admin.diploms')}}">Diplomas</a>
+            <span class="breadcrumb-item active">Diplomas Table</span>
         </nav>
         </div><!-- br-pageheader -->
         <div class="br-pagebody">
             <div class="br-section-wrapper">
                 <a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" href="{{route('diploms.add')}}">Add New</a>
-                <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Diploms Table</h6>
+                <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Diplomas Table</h6>
                 <p class="mg-b-25 mg-lg-b-50">Searching, ordering and paging goodness will be immediately added to the table.</p>
                 <div class="table-wrapper">
                     <table id="diploms_datatable" class="table display responsive nowrap">

@@ -37,7 +37,7 @@
         });
     </script>
     <script type="text/javascript">
-        /* Nice Scroll */
+        /* Nice Scroll 
         $(document).ready(function() {
             "use strict";
             $("html").niceScroll({
@@ -54,7 +54,7 @@
                 zindex: "999",
                 horizrailenabled: false
             });
-        });
+        });*/
     </script>
     <script>
         $.ajaxSetup({
@@ -67,6 +67,7 @@
         $(document).ready(function() {
             $('#courses_datatable').DataTable({
                 "columns": [
+                    { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },

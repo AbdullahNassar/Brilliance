@@ -50,15 +50,42 @@
     <script type="text/javascript">
         function statusFunction() {
             var status = document.getElementById("status");
-            if(status.value != 'Close'){
+            if (status.value == 'Potential' || status.value == 'Hold' || status.value == 'Interested'){
+                document.getElementById('rate').disabled = false;
+                document.getElementById('temperature').disabled = false;
                 document.getElementById('next_call').disabled = false;
-            }else{
+            } else if (status.value == 'Time/ Not Decided' || status.value == 'No Answer' || status.value == 'Out Of Reach'){
+                document.getElementById('rate').disabled = true;
+                document.getElementById('temperature').disabled = true;
+                document.getElementById('next_call').disabled = false;
+            } else if (status.value == 'Not Interested' || status.value == 'Student' || status.value == 'Applicant'){
+                document.getElementById('rate').disabled = true;
+                document.getElementById('temperature').disabled = true;
                 document.getElementById('next_call').disabled = true;
             }
         }
     </script>
+
     <script type="text/javascript">
-        /* Nice Scroll */
+        function tempFunction() {
+            var temp = document.getElementById("temperature");
+            if(temp.value == 'Cold'){
+                $('#rate').empty();
+                $('#rate').append('<option></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>');
+            }
+            if(temp.value == 'Warm'){
+                $('#rate').empty();
+                $('#rate').append('<option></option><option value="6">6</option><option value="7">7</option><option value="8">8</option>');
+            }
+            if(temp.value == 'Hot'){
+                $('#rate').empty();
+                $('#rate').append('<option></option><option value="9">9</option><option value="10">10</option>');
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        /* Nice Scroll 
         $(document).ready(function() {
             "use strict";
             $("html").niceScroll({
@@ -76,7 +103,7 @@
                 horizrailenabled: false
             });
             
-        });
+        });*/
     </script>
 
     <script type="text/javascript">

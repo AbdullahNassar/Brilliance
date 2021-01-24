@@ -9,11 +9,16 @@ class SalesActivity extends Model
 {
     use SoftDeletes;
     protected $table = 'sales_activities';
-    protected $fillable = ['type','status','next_call','notes','sales_id','sales_lead_id'];
+    protected $fillable = ['type','status','next_call','notes','sales_id','sales_lead_id','rate','temperature','manager_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class,'sales_id');
+    }
+
+    public function manager()
+    {
+        return $this->belongsTo(User::class,'manager_id');
     }
 
     public function salesLead()

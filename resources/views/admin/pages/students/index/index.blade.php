@@ -38,7 +38,9 @@
         </div><!-- br-pageheader -->
         <div class="br-pagebody">
             <div class="br-section-wrapper">
-                <!--<a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" href="{{route('students.add')}}">Add New</a>-->
+                <a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" href="{{route('students.add')}}">Add New Student</a>
+                <a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" style="margin-right:15px;" href="{{route('student.grades')}}">Add Student Grades</a>
+                <a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" style="margin-right:15px;" href="{{route('admin.students.schedules')}}">Add Student Schedules</a>
                 <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Students Table</h6>
                 <p class="mg-b-25 mg-lg-b-50">Searching, ordering and paging goodness will be immediately added to the table.</p>
                 <div class="table-wrapper">
@@ -47,7 +49,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Program/Diplom</th>
+                                <th>Program</th>
+                                <th>Intake</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Actions</th>
@@ -58,14 +61,19 @@
                                 <tr>
                                     <th>{{$loop->index +1}}</th>
                                     <th><a href="{{ route('students.profile' , ['id' => $item->id]) }}">{{$item->name}} {{$item->last_name}} </a></th>
-                                    <th>@if($item->program_id != null) Program: {{$item->program->name}} @elseif($item->diplom) Diplom: {{$item->diplom->name}} @else Empty @endif</th>
+                                    <th>@if($item->program_id != null) {{$item->program->name}} | {{$item->program->university->name}} @elseif($item->diplom_id != null) {{$item->diplom->name}} | {{$item->diplom->university->name}}  @else Empty @endif</th>
+                                    <th>@if($item->program_intake_id != null) {{$item->programintake->name}} @elseif($item->diplom_intake_id != null) {{$item->diplomintake->name}}  @else Empty @endif</th>
                                     <th>{{$item->mobile1}}</th>
                                     <th>{{$item->email1}}</th>
                                     <th>
                                         <a href="{{ route('students.edit' , ['id' => $item->id]) }}" class="text-primary edit" title="Edit Student"><i class="fa fa-edit"></i></a>
-                                        <a target="_blank" href="{{ route('students.schedule' , ['id' => $item->id]) }}" class="text-primary edit" title="Student Schedule"><i class="fa fa-calendar"></i></a>     
-                                        <!--<a target="_blank" href="{{ route('students.documents' , ['id' => $item->id]) }}" class="text-primary edit" title="Student Documents"><i class="icon ion-upload"></i></a> -->    
-                                        <a title="Delete Student" href="#" class="text-danger btndelet" id="{{$item->id}}"><i class="fa fa-close"></i></a>
+                                        <a href="{{ route('students.schedule' , ['id' => $item->id]) }}" class="text-primary edit" title="Student Schedule"><i class="fa fa-calendar"></i></a>     
+                                        <a href="{{ route('admin.students.schedule' , ['id' => $item->id]) }}" class="text-primary edit" title="Add Student Schedule"><i class="fa fa-clock-o"></i></a>   
+                                        <a href="{{ route('students.progress' , ['id' => $item->id]) }}" class="text-primary edit" title="Add Student Progress"><i class="fa fa-server"></i></a>     
+                                        <a href="{{ route('admin.students.upload' , ['id' => $item->id]) }}" class="text-primary edit" title="Upload Student Documents"><i class="fa fa-upload"></i></a>     
+                                        <a href="{{ route('students.payment' , ['id' => $item->id]) }}" class="text-primary" title="Student Payment"><i class="fa fa-money"></i></a> 
+                                        <a href="{{ route('students.pay' , ['id' => $item->id]) }}" class="text-primary" title="Pay"><i class="fa fa-credit-card"></i></a>   
+                                        <!--<a title="Delete Student" href="#" class="text-danger btndelet" id="{{$item->id}}"><i class="fa fa-close"></i></a>-->  
                                     </th>
                                 </tr>
                             @endforeach

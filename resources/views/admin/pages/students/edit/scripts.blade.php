@@ -78,7 +78,7 @@
         });
     </script>
     <script type="text/javascript">
-        /* Nice Scroll */
+        /* Nice Scroll 
         $(document).ready(function() {
             "use strict";
             $("html").niceScroll({
@@ -95,10 +95,23 @@
                 zindex: "999",
                 horizrailenabled: false
             });
-        });
+        });*/
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#show_corporate').on('click', function (){
+                document.getElementById("corporate_text").style.display = "block";
+                document.getElementById("corporate_button").style.display = "block";
+            });
+            $('#submit_corporate').on('click', function (){
+                var corporate = $('#corp_name').val();
+                var corporate_id = parseInt(document.getElementById("corp_id").value);
+                var new_id = corporate_id+1;
+                $('#corp1').append('<option value="'+new_id+'">'+corporate+'</option>');
+                $('#corp2').append('<option value="'+new_id+'">'+corporate+'</option>');
+                document.getElementById("corporate_text").style.display = "none";
+                document.getElementById("corporate_button").style.display = "none";
+            });
             // Time Picker
             $('#tpBasic').timepicker();
             $('#tp2').timepicker({'scrollDefault': 'now'});
@@ -162,7 +175,8 @@
                     success:function(data)
                     {
                         toastr.success(data.original.data.message, 'Success!', {timeOut: 5000});
-                        //window.location.href = "{{URL::to('/admin/student')}}"
+                        window.location.href = "{{URL::to('/admin/student')}}"
+                        //location.reload();
                     },
                     error: function(data) { 
                         var error = data.responseJSON.errors;

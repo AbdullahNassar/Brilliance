@@ -56,6 +56,14 @@
                 </div>
               </div>
               <div class="col-lg-6">
+                <div id="lnWrapper" class="parsley-input">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Credits</label>
+                      <input class="form-control" type="text" name="credits" data-parsley-class-handler="#lnWrapper" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
                 <div class="d-flex">
                   <div id="slWrapper" class="parsley-select" style="width:100%">
                       <div class="form-group pmd-textfield pmd-textfield-floating-label">
@@ -64,7 +72,7 @@
                           data-parsley-errors-container="#slErrorContainer" style="width:100%" required>
                           <option></option>
                           @foreach($programs as $program)
-                            <option value="{{$program->id}}">{{$program->name}}</option>
+                            <option value="{{$program->id}}">{{$program->name}} | {{$program->university->name}}</option>
                           @endforeach
                         </select>
                         <div id="slErrorContainer"></div>

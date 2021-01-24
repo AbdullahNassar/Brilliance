@@ -73,7 +73,7 @@
                         data-parsley-errors-container="#slErrorContainer" style="width:100%" required>
                         <option></option>
                         @foreach($programs as $program)
-                          <option value="{{$program->id}}" @if($program->id == $intake->program_id) selected @endif>{{$program->name}}</option>
+                          <option value="{{$program->id}}" @if($program->id == $intake->program_id) selected @endif>{{$program->name}} | {{$program->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer"></div>

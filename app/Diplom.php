@@ -23,11 +23,31 @@ class Diplom extends Model
 
     public function university()
     {
-        return $this->belongsTo(University::class);
+        return $this->belongsTo(University::class,'university_id');
     }
 
     public function leads()
     {
         return $this->hasMany(SalesLead::class,'diplom_id');
+    }
+
+    public function corporates()
+    {
+        return $this->hasMany(Corporate::class,'diplom_id');
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(CorporateActivity::class,'diplom_id');
+    }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+    
+    public function doctors()
+    {
+        return $this->hasMany(Doctor::class);
     }
 }

@@ -54,7 +54,8 @@ class SalesTicketsController extends MainController
     public function add(){
         $programs = Program::where('active',1)->get();
         $diploms = Diplom::where('active',1)->get();
-        return view('admin.pages.sales.ticket.add.index',compact('programs','diploms'));
+        $users = User::all();
+        return view('admin.pages.sales.ticket.add.index',compact('programs','diploms','users'));
     }
 
     public function upload(){

@@ -48,6 +48,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Credits</th>
                                 <th>Program</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -58,7 +59,8 @@
                                 <tr class="@if($item->active == 0) row-unpublished @endif">
                                     <th class="@if($item->active == 0) row-unpublished @endif">{{$loop->index +1}}</th>
                                     <th class="@if($item->active == 0) column-unpublished @endif">{{$item->name}}</th>
-                                    <th class="@if($item->active == 0) row-unpublished @endif">{{$item->program->name}}</th>
+                                    <th class="@if($item->active == 0) column-unpublished @endif">{{$item->credits}}</th>
+                                    <th class="@if($item->active == 0) row-unpublished @endif">{{$item->program->name}} | {{$item->program->university->name}}</th>
                                     <th class="@if($item->active == 0) row-unpublished @endif">@if($item->active == 0)
                                         Unpublished
                                         @elseif($item->active == 1)

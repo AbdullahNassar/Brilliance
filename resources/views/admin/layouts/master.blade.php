@@ -14,7 +14,7 @@
         @include('admin.layouts.sidebar')
         @include('admin.layouts.header')
         @include('admin.layouts.sideright')
-        <div class="br-mainpanel @if(Route::currentRouteName()=='students.profile' || Route::currentRouteName()=='lead.profile') br-profile-page @endif">
+        <div class="br-mainpanel @if(Route::currentRouteName()=='doctors.profile' || Route::currentRouteName()=='program.intake.profile' || Route::currentRouteName()=='diplom.intake.profile' || Route::currentRouteName()=='corporates.profile' || Route::currentRouteName()=='students.profile' || Route::currentRouteName()=='lead.profile') br-profile-page @endif">
           @yield('content')
           @include('admin.layouts.footer')
         </div>

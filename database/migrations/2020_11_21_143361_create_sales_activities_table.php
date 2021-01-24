@@ -19,6 +19,8 @@ class CreateSalesActivitiesTable extends Migration
             $table->string('status')->default(null)->nullable();
             $table->string('next_call')->default(null)->nullable();
             $table->text('notes')->default(null)->nullable();
+            $table->string('rate')->default(null)->nullable();
+            $table->string('temperature')->default(null)->nullable();
             $table->integer('sales_id')->unsigned()->default(null)->nullable();
             $table->foreign('sales_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('sales_lead_id')->unsigned()->default(null)->nullable();

@@ -9,9 +9,12 @@ use App\Http\Requests\MarketingLead\UploadMarketingLeadRequest;
 use App\Http\Requests\MarketingLead\AssignMarketingLeadRequest;
 use App\Helpers\MarketingLeadHelper;
 use App\MarketingLead;
+use App\SalesTicket;
 use App\SalesLead;
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
+use Carbon;
 
 class MarketingLeadsController extends MainController
 {
@@ -44,8 +47,38 @@ class MarketingLeadsController extends MainController
 
     public function index(){
         $leads = MarketingLead::all();
-        $users = User::where('role','Sales')->get();
+        $users = User::where('role','sales-manager')->get();
         return view('admin.pages.marketing.index.index', compact('leads','users'));
+    }
+
+    public function leadsReport(){
+        $leads = MarketingLead::all();
+        return view('admin.pages.reports.marketing.leads.index', compact('leads'));
+    }
+
+    public function ticketsReport(){
+        $leads = SalesTicket::all();
+        return view('admin.pages.reports.marketing.tickets.index', compact('leads'));
+    }
+
+    public function tickets(){
+        $leads = SalesTicket::all();
+        return view('admin.pages.marketing.tickets.index', compact('leads'));
+    }
+
+    public static function sales(){
+        $leads = SalesLead::all();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
     }
 
     public function add(){
@@ -82,7 +115,7 @@ class MarketingLeadsController extends MainController
 
     public function unassigned(){
         $leads = MarketingLead::where('status',0)->get();
-        $users = User::where('role','Sales Manager')->get();
+        $users = User::where('role','sales-manager')->get();
         return view('admin.pages.marketing.index.index', compact('leads','users'));
     }
 
@@ -107,6 +140,7 @@ class MarketingLeadsController extends MainController
                         'phone_number' => $lead->phone_number,
                         'email' => $lead->email,
                         'sales_id' => $request->sales_id,
+                        'manager_id' => $request->sales_id,
                         'program_id' => $lead->program_id,
                         'diplom_id' => $lead->diplom_id,
                         'status' => 0
@@ -117,5 +151,186 @@ class MarketingLeadsController extends MainController
         return json_encode($this->respondWithSuccess(trans('messages.'.$this->messageKeyName().'.store',[
             'model' => class_basename(get_class(new SalesLead))
         ])));
+    }
+
+    public static function followleads(){
+        $leads = SalesLead::where('activity_status','Time/ Not Decided')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public static function potentialleads(){
+        $leads = SalesLead::where('activity_status','Potential')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public static function holdleads(){
+        $leads = SalesLead::where('activity_status','Hold')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public static function noAnswerleads(){
+        $leads = SalesLead::where('activity_status','No Answer')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public static function interestedleads(){
+        $leads = SalesLead::where('activity_status','Interested')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public static function outOfReachleads(){
+        $leads = SalesLead::where('activity_status','Out Of Reach')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public static function closedleads(){
+        $leads = SalesLead::where('activity_status','Not Interested')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public static function warm(){
+        $leads = SalesLead::where('temperature','Warm')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public static function cold(){
+        $leads = SalesLead::where('temperature','Cold')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public static function hot(){
+        $leads = SalesLead::where('temperature','Hot')->get();
+        $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
+        $potential = SalesLead::where('activity_status','Potential')->count();
+        $hold = SalesLead::where('activity_status','Hold')->count();
+        $noanswer = SalesLead::where('activity_status','No Answer')->count();
+        $interested = SalesLead::where('activity_status','Interested')->count();
+        $outofreach = SalesLead::where('activity_status','Out Of Reach')->count();
+        $closed = SalesLead::where('activity_status','Not Interested')->count();
+        $warm = SalesLead::where('temperature','Warm')->count();
+        $cold = SalesLead::where('temperature','Cold')->count();
+        $hot = SalesLead::where('temperature','Hot')->count();
+        return view('admin.pages.marketing.sales.index', compact('leads','follow','potential','hold','noanswer','interested','outofreach','closed','hot','warm','cold'));
+    }
+
+    public function approve($id){
+        $ticket = SalesTicket::find($id);
+        SalesTicket::where('id',$id)->update([
+            'status' => 1,
+        ]);
+        $now = Carbon::now()->format('j-m-Y');
+        SalesLead::create([
+            'created_time' => $now,
+            'campaign_name' => $ticket->campaign_name,
+            'form_name' => $ticket->form_name,
+            'platform' => $ticket->source,
+            'full_name' => $ticket->full_name,
+            'job_title' => $ticket->job_title,
+            'company_name' => $ticket->company_name,
+            'phone_number' => $ticket->phone_number,
+            'email' => $ticket->email,
+            'sales_id' => Auth::user()->id,
+            'program_id' => $ticket->program_id,
+            'diplom_id' => $ticket->diplom_id,
+            'status' => 0
+        ]);
+        return redirect()->back();
+    }
+
+    public function reject($id){
+        SalesTicket::where('id',$id)->update([
+            'status' => 2,
+        ]);
+        return redirect()->back();
     }
 }

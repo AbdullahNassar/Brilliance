@@ -17,6 +17,7 @@ class StoreProgramCourseRequest extends BaseRequest
 		$rules = [
             'program_id' => 'required|exists:programs,id',
             'name' => 'required|min:3',
+            'credits' => 'required',
         ];
         return $rules;
     }

@@ -47,7 +47,7 @@
             {{csrf_field()}}
             <input type="hidden" name="marketing_id" value="{{Auth::user()->id}}">
             <div class="row mg-b-25">
-              <div class="col-lg-6">
+              <!--<div class="col-lg-6">
                 <div id="fnWrapper" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Created Time</label>
@@ -70,20 +70,28 @@
                       <input class="form-control" type="text" name="form_name" data-parsley-class-handler="#fnWrapper1" required autocomplete="off">
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-6">
-                <div id="lnWrapper1" class="parsley-input">
-                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Platform</label>
-                      <input class="form-control" type="text" name="platform" data-parsley-class-handler="#lnWrapper1" required autocomplete="off">
-                  </div>
-                </div>
-              </div>
+              </div>-->
               <div class="col-lg-6">
                 <div id="fnWrapper2" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Full Name</label>
                       <input class="form-control" type="text" name="full_name" data-parsley-class-handler="#fnWrapper2" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div id="lnWrapper3" class="parsley-input">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Phone Number</label>
+                      <input class="form-control" type="text" name="phone_number" data-parsley-class-handler="#lnWrapper3" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div id="fnWrapper4" class="parsley-input">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Email</label>
+                      <input class="form-control" type="email" name="email" data-parsley-class-handler="#fnWrapper4" required autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -104,18 +112,10 @@
                 </div>
               </div>
               <div class="col-lg-6">
-                <div id="lnWrapper3" class="parsley-input">
+                <div id="lnWrapper1" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Phone Number</label>
-                      <input class="form-control" type="text" name="phone_number" data-parsley-class-handler="#lnWrapper3" required autocomplete="off">
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div id="fnWrapper4" class="parsley-input">
-                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Email</label>
-                      <input class="form-control" type="email" name="email" data-parsley-class-handler="#fnWrapper4" required autocomplete="off">
+                      <label class="control-label">Platform</label>
+                      <input class="form-control" type="text" name="platform" data-parsley-class-handler="#lnWrapper1" required autocomplete="off">
                   </div>
                 </div>
               </div>

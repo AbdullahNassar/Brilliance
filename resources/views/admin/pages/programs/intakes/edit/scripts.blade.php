@@ -35,7 +35,7 @@
         });
     </script>
     <script type="text/javascript">
-        /* Nice Scroll */
+        /* Nice Scroll 
         $(document).ready(function() {
             "use strict";
             $("html").niceScroll({
@@ -52,7 +52,7 @@
                 zindex: "999",
                 horizrailenabled: false
             });
-        });
+        });*/
     </script>
 
     <script type="text/javascript">

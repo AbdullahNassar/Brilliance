@@ -73,13 +73,15 @@
                       <select id="status" onchange="statusFunction()" class="form-control pmd-select2 select2-show-search" name="status" data-parsley-class-handler="#slWrapper3"
                         data-parsley-errors-container="#slErrorContainer3" style="width:100%" required>
                         <option> </option>
-                        <option value="Follow Up">Follow Up</option>
+                        <option value="Time/ Not Decided">Time/ Not Decided</option>
                         <option value="Potential">Potential</option>
                         <option value="Hold">Hold</option>
                         <option value="No Answer">No Answer</option>
                         <option value="Interested">Interested</option>
                         <option value="Out Of Reach">Out Of Reach</option>
-                        <option value="Closed">Closed</option>
+                        <option value="Not Interested">Not Interested</option>
+                        <option value="Student">Convert to Student</option>
+                        <option value="Applicant">Convert to Applicant</option>
                       </select>
                       <div id="slErrorContainer3"></div>
                     </div>
@@ -89,8 +91,39 @@
               <div class="col-lg-4">
                 <div id="fnWrapper" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Next Date</label>
-                      <input id="next_call" class="form-control datepicker dpd" type="text" name="next_call" data-date-format="dd-mm-yyyy" data-parsley-class-handler="#fnWrapper" required autocomplete="off" disabled>
+                      <label class="control-label">Follow up Date</label>
+                      <input id="next_call" class="form-control datepicker dpd" type="text" name="next_call" data-date-format="dd-mm-yyyy" data-parsley-class-handler="#fnWrapper" autocomplete="off" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="d-flex">
+                  <div id="slWrapper4" class="parsley-select" style="width:100%">
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Lead Interest Temperature</label>
+                      <select id="temperature" onchange="tempFunction()" class="form-control pmd-select2 select2-show-search" name="temperature" data-parsley-class-handler="#slWrapper4"
+                          data-parsley-errors-container="#slErrorContainer4" style="width:100%" disabled>
+                        <option></option>
+                        <option value="Cold">Cold</option>
+                        <option value="Warm">Warm</option>
+                        <option value="Hot">Hot</option>
+                      </select>
+                      <div id="slErrorContainer4"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="d-flex">
+                  <div id="slWrapper3" class="parsley-select" style="width:100%">
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                      <label class="control-label">Lead Quality Rate</label>
+                      <select id="rate" class="form-control pmd-select2 select2-show-search" name="rate" data-parsley-class-handler="#slWrapper3"
+                          data-parsley-errors-container="#slErrorContainer3" style="width:100%" disabled>
+                        <option></option>
+                      </select>
+                      <div id="slErrorContainer3"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -119,7 +152,7 @@
                           data-parsley-errors-container="#slErrorContainer1" style="width:100%" disabled>
                         <option></option>
                         @foreach($programs as $program)
-                          <option value="{{$program->id}}">{{$program->name}}</option>
+                          <option value="{{$program->id}}">{{$program->name}} - {{$program->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer1"></div>
@@ -136,7 +169,7 @@
                           data-parsley-errors-container="#slErrorContainer2" style="width:100%" disabled>
                         <option></option>
                         @foreach($diploms as $diplom)
-                          <option value="{{$diplom->id}}">{{$diplom->name}}</option>
+                          <option value="{{$diplom->id}}">{{$diplom->name}} - {{$diplom->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer2"></div>

@@ -39,6 +39,7 @@ return [
     'model.renew' => ':model subscription has been renewed successfully',
     'model.cancel' => ':model subscription has been canceled successfully',
     'model.fail' => ':model process failed',
+    'model.busy' => ':model is busy in this time',
     'model.activate' => 'Please activate the related university first',
     'model.publish' => ':model has been published successfully',
     'pricesPeriodConflict' => 'Prices period conflict',
@@ -55,5 +56,6 @@ return [
 
     'model.test_score' => '[Language Tests Requirements] score field should be less than or equal the test score',
     'model.admission_score' => '[Admission Requirements] required score field should be less than or equal the test score',
-    'old' => 'Student Document Has Been Added Before'
+    'old' => 'Student Document Has Been Added Before',
+
 ];

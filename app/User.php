@@ -72,4 +72,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(SalesActivity::class,'sales_id');
     }
+
+    public function corporates()
+    {
+        return $this->hasMany(Corporate::class,'user_id');
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(CorporateActivity::class,'user_id');
+    }
 }

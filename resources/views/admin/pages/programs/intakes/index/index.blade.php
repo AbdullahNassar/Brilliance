@@ -59,8 +59,8 @@
                             @foreach($intakes as $item)
                                 <tr>
                                     <th class="@if($item->active == 0) row-unpublished @endif">{{$loop->index +1}}</th>
-                                    <th class="@if($item->active == 0) column-unpublished @endif">{{$item->name}}</th>
-                                    <th class="@if($item->active == 0) row-unpublished @endif">{{$item->program->name}}</th>
+                                    <th class="@if($item->active == 0) column-unpublished @endif"><a href="{{ route('program.intake.profile' , ['id' => $item->id]) }}">{{$item->name}}</a></th>
+                                    <th class="@if($item->active == 0) row-unpublished @endif">{{$item->program->name}} | {{$item->program->university->name}}</th>
                                     <th class="@if($item->active == 0) row-unpublished @endif">@if($item->status == 1)
                                         In Progress
                                         @elseif($item->status == 2)

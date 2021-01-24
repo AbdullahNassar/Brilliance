@@ -58,6 +58,9 @@ class CreateStudentsTable extends Migration
             $table->foreign('diplom_intake_id')->references('id')->on('diplom_intakes')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->default(null)->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('service')->default(null)->nullable();
+            $table->string('service_note')->default(null)->nullable();
+            $table->string('status')->default(null)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

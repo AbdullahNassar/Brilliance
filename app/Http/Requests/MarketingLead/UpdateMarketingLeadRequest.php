@@ -14,9 +14,6 @@ class UpdateMarketingLeadRequest extends BaseRequest
     public function rules()
     {
         return [
-            'created_time' => 'required',
-            'campaign_name' => 'required',
-            'form_name' => 'required',
             'platform' => 'required',
             'full_name' => 'required',
             'job_title' => 'required',

@@ -18,7 +18,7 @@ class UpdateStudentRequest extends BaseRequest
             'image' => 'mimes:jpeg,jpg,png|max:20000|dimensions:min_width=500,min_height=500',
             'email1' => 'required',
             'gender' => 'required',
-            'job' => 'required',
+            'job' => 'sometimes',
             'mobile1' => 'required',
             'national_id' => 'required',
             'location' => 'sometimes',

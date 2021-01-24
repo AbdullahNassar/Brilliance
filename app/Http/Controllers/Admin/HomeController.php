@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Speaker;
+use App\MarketingLead;
+use App\SalesLead;
 use Auth;
 
 class HomeController extends Controller
@@ -29,9 +30,19 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function profile($id)
+    {
+        $user = User::find($id);
+        return view('admin.pages.profile.index', compact('user'));
+    }
+
     public function dashboard()
     {
-        return view('admin.pages.home.home');
+        //app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+        $marketing_leads = MarketingLead::where('marketing_id',Auth::user()->id)->get();
+        $sales_leads = SalesLead::where('sales_id',Auth::user()->id)->where('status','!=',5)->where('activity_status','!=',"Not Interested")->get();
+        $manager_leads = SalesLead::where('manager_id',Auth::user()->id)->where('status','!=',5)->where('activity_status','!=',"Not Interested")->get();
+        return view('admin.pages.home.home',compact('marketing_leads','sales_leads','manager_leads'));
     }
 
     public function speaks()

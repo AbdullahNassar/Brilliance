@@ -17,6 +17,7 @@ class UpdateProgramCourseRequest extends BaseRequest
 		return [
             'program_id' => 'required|exists:programs,id',
             'name' => 'required|min:3',
+            'credits' => 'required',
         ];
     }
 }

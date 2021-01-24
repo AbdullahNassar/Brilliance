@@ -16,9 +16,11 @@ class StoreSalesLeadActivityRequest extends BaseRequest
         return [
             'type' => 'required',
             'status' => 'required',
-            'next_call' => 'required',
+            'next_call' => 'sometimes',
             'notes' => 'required',
             'sales_id'=>'required|exists:users,id',
+            'rate' => 'sometimes',
+            'temperature' => 'sometimes',
         ];
     }
 }

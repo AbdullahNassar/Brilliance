@@ -16,6 +16,7 @@ class CreateDiplomCoursesTable extends Migration
         Schema::create('diplom_courses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->default(null)->nullable();
+            $table->integer('credits')->default(null)->nullable();
             $table->integer('diplom_id')->unsigned()->default(null)->nullable();
             $table->integer('active')->default(null)->nullable();
             $table->foreign('diplom_id')->references('id')->on('diploms')->onDelete('cascade');

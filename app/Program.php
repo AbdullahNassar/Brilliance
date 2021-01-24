@@ -23,11 +23,31 @@ class Program extends Model
 
     public function university()
     {
-        return $this->belongsTo(University::class);
+        return $this->belongsTo(University::class,'university_id');
     }
 
     public function leads()
     {
         return $this->hasMany(SalesLead::class,'program_id');
+    }
+
+    public function corporates()
+    {
+        return $this->hasMany(Corporate::class,'program_id');
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(CorporateActivity::class,'program_id');
+    }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class,'program_id');
+    }
+    
+    public function doctors()
+    {
+        return $this->hasMany(Doctor::class,'program_id');
     }
 }

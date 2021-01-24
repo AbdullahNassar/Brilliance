@@ -23,7 +23,7 @@
     <script src="{{asset('vendors/toastr/toastr.min.js')}}"></script>
     <script src="{{asset('vendors/js/float-labels.js')}}"></script>
     <script type="text/javascript">
-        /* Nice Scroll */
+        /* Nice Scroll 
         $(document).ready(function() {
             "use strict";
             $("html").niceScroll({
@@ -40,7 +40,7 @@
                 zindex: "999",
                 horizrailenabled: false
             });
-        });
+        });*/
     </script>
     <script>
         $.ajaxSetup({

@@ -37,7 +37,7 @@
         });
     </script>
     <script type="text/javascript">
-        /* Nice Scroll */
+        /* Nice Scroll 
         $(document).ready(function() {
             "use strict";
             $("html").niceScroll({
@@ -54,7 +54,7 @@
                 zindex: "999",
                 horizrailenabled: false
             });
-        });
+        });*/
     </script>
     <script>
         $.ajaxSetup({
@@ -70,9 +70,27 @@
                 if(this.checked) {
                     $('#ckbox{{$item->id}}').val(1);
                     $('#checked{{$item->id}}').val({{$item->id}});
+                }else{
+                    $('#ckbox{{$item->id}}').val(0);
                 }
             });
             @endforeach
+
+            $("#checkall").change(function() {
+                if(this.checked) {
+                    @foreach($leads as $item)
+                        document.getElementById("ckbox{{$item->id}}").checked = true;
+                        $('#ckbox{{$item->id}}').val(1);
+                        $('#checked{{$item->id}}').val({{$item->id}});
+                    @endforeach
+                }else{
+                    @foreach($leads as $item)
+                        document.getElementById("ckbox{{$item->id}}").checked = false;
+                        $('#ckbox{{$item->id}}').val(0);
+                    @endforeach
+                }
+            });
+
             $('#leads_datatable').DataTable({
                 "columns": [
                     { "orderable": true },
@@ -80,7 +98,8 @@
                     { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
-                    @if(Route::currentRouteName()=='sales.leads.assigned') { "orderable": true }, @endif
+                    { "orderable": true },
+                    @if(Route::currentRouteName()=='admin.sales.manager.leads' || Route::currentRouteName()=='sales.leads.unassigned' || Route::currentRouteName()=='sales.leads.assigned' || Route::currentRouteName()=='sales.manager.follow' || Route::currentRouteName()=='sales.manager.potential' || Route::currentRouteName()=='sales.manager.hold' || Route::currentRouteName()=='sales.manager.noAnswer' || Route::currentRouteName()=='sales.manager.interested' || Route::currentRouteName()=='sales.manager.outOfReach' || Route::currentRouteName()=='sales.manager.closed') { "orderable": true }, @endif
                     { "orderable": false },
                 ],
                 responsive: true,
@@ -91,9 +110,9 @@
                     lengthMenu: 'show _MENU_ items',
                 }
             });
-            $('#leads_datatable tbody').on( 'click', 'tr', function () {
-                $(this).toggleClass('selected');
-            });
+            //$('#leads_datatable tbody').on( 'click', 'tr', function () {
+                //$(this).toggleClass('selected');
+            //});
 
             $('.form-layout .form-control').on('focusin', function(){
                 $(this).closest('.form-group').addClass('form-group-active');

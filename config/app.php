@@ -181,6 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         LaravelFullCalendar\FullCalendarServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Rawilk\Printing\PrintingServiceProvider::class,
 
     ],
 
@@ -238,6 +239,7 @@ return [
         'Date' => Jenssegers\Date\Date::class,
         'Carbon' => 'Carbon\Carbon',
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Printing' => Rawilk\Printing\PrintingServiceProvider::class,
     ],
 
 ];

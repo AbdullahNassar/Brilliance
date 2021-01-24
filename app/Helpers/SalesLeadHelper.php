@@ -4,7 +4,11 @@ namespace App\Helpers;
 
 use Carbon;
 use App\User;
+use App\Diplom;
+use App\Program;
+use App\Student;
 use App\SalesLead;
+use App\StudentCourse;
 use App\SalesActivity;
 use App\Imports\SalesLeadsImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -38,6 +42,80 @@ class SalesLeadHelper{
 
     public static function addSalesLeadActivity($request)
 	{
+        if($request->status == "Student"){
+            $id = $request->sales_lead_id;
+            $lead = SalesLead::find($id);
+            $student = Student::create([
+                'name' => $lead->full_name,
+                'type' => 'Student',
+                'job' => $lead->job_title,
+                'mobile1' => $lead->phone_number,
+                'email1' => $lead->email,
+                'program_id' => $lead->program_id,
+                'diplom_id' => $lead->diplom_id,
+                'user_id' => $request->user_id,
+                'lead_id' => $id,
+            ]);
+            if($request['program_id'] != null){
+                $program = Program::find($request['program_id']);
+                foreach($program->courses as $course){
+                    StudentCourse::create([
+                        'program_course_id' => $course->id,
+                        'student_id' => $student->id,
+                    ]);
+                }
+            }
+
+            if($request['diplom_id'] != null){
+                $diplom = Diplom::find($request['diplom_id']);
+                foreach($diplom->courses as $course){
+                    StudentCourse::create([
+                        'diplom_course_id' => $course->id,
+                        'student_id' => $student->id,
+                    ]);
+                }
+            }
+            $lead = SalesLead::where('id',$lead->id)->update([
+                'status' => 5,
+            ]);
+        }elseif($request->status == "Applicant"){
+            $id = $request->sales_lead_id;
+            $lead = SalesLead::find($id);
+            $student = Student::create([
+                'name' => $lead->full_name,
+                'type' => 'Applicant',
+                'job' => $lead->job_title,
+                'mobile1' => $lead->phone_number,
+                'email1' => $lead->email,
+                'program_id' => $lead->program_id,
+                'diplom_id' => $lead->diplom_id,
+                'user_id' => $request->user_id,
+                'lead_id' => $id,
+            ]);
+            if($request['program_id'] != null){
+                $program = Program::find($request['program_id']);
+                foreach($program->courses as $course){
+                    StudentCourse::create([
+                        'program_course_id' => $course->id,
+                        'student_id' => $student->id,
+                    ]);
+                }
+            }
+
+            if($request['diplom_id'] != null){
+                $diplom = Diplom::find($request['diplom_id']);
+                foreach($diplom->courses as $course){
+                    StudentCourse::create([
+                        'diplom_course_id' => $course->id,
+                        'student_id' => $student->id,
+                    ]);
+                }
+            }
+            $lead = SalesLead::where('id',$lead->id)->update([
+                'status' => 5,
+            ]);
+        }
+
         $user = User::where('role','sales')->first();
         $id = $request['sales_lead_id'];
         $activity = SalesActivity::create([
@@ -45,8 +123,14 @@ class SalesLeadHelper{
             'status' => $request['status'],
             'next_call' => $request['next_call'],
             'notes' => $request['notes'],
+            'rate' => $request['rate'],
+            'temperature' => $request['temperature'],
             'sales_id' => $user->id,
             'sales_lead_id' => $request['sales_lead_id'],
+        ]);
+        SalesLead::where('id',$id)->update([
+            'rate' => $request['rate'],
+            'temperature' => $request['temperature'],
         ]);
         if(!empty($request['program_id']) || !empty($request['diplom_id'])){
             if($lead = SalesLead::find($id)) {
@@ -55,6 +139,8 @@ class SalesLeadHelper{
                     'diplom_id' => $request['diplom_id'],
                     'activity_status' => $request['status'],
                     'next_call' => $request['next_call'],
+                    'rate' => $request['rate'],
+                    'temperature' => $request['temperature'],
                 ]);
                 return ['data' => $lead];      
             }

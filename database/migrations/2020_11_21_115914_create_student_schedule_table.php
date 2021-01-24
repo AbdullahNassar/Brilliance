@@ -16,7 +16,11 @@ class CreateStudentScheduleTable extends Migration
         Schema::create('student_schedule', function (Blueprint $table) {
             $table->increments('id');
             $table->string('date')->default(null)->nullable();
-            $table->string('time')->default(null)->nullable();
+            $table->string('type')->default(null)->nullable();
+            $table->string('time_from')->default(null)->nullable();
+            $table->string('time_to')->default(null)->nullable();
+            $table->text('notes')->default(null)->nullable();
+            $table->string('service')->default(null)->nullable();
             $table->integer('student_id')->unsigned()->default(null)->nullable();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->integer('program_id')->unsigned()->default(null)->nullable();

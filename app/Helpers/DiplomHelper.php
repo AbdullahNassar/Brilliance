@@ -103,6 +103,7 @@ class DiplomHelper{
 
         $course = DiplomCourse::create([
             'name' => $request['name'],
+            'credits' => $request['credits'],
             'diplom_id' => $request['diplom_id'],
             'active' => $active,
         ]); 
@@ -140,6 +141,7 @@ class DiplomHelper{
 		if(DiplomCourse::find($id)) {
             $course = DiplomCourse::where('id',$id)->update([
                 'name' => $request['name'],
+                'credits' => $request['credits'],
                 'diplom_id' => $request['diplom_id'],
                 'active' => $active,
             ]);

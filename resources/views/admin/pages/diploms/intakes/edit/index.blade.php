@@ -6,7 +6,7 @@
     <meta name="author" content="ThemePixels">
     <meta name="csrf_token" content="{{csrf_token()}}">
 @endsection
-@section('title','Diplom Intakes')
+@section('title','Diploma Intakes')
 @section('styles')
     <link href="{{asset('vendors/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/lib/Ionicons/css/ionicons.css')}}" rel="stylesheet">
@@ -32,12 +32,12 @@
     <div class="br-pageheader pd-y-15 pd-l-20">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
             <a class="breadcrumb-item" href="{{route('dashboard')}}">Brilliance</a>
-            <a class="breadcrumb-item" href="{{route('admin.diplom.intakes')}}">Diplom Intakes</a>
-            <span class="breadcrumb-item active">Diplom Intakes Form</span>
+            <a class="breadcrumb-item" href="{{route('admin.diplom.intakes')}}">Diploma Intakes</a>
+            <span class="breadcrumb-item active">Diploma Intakes Form</span>
         </nav>
       </div><!-- br-pageheader -->
       <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-        <h4 class="tx-gray-800 mg-b-5">Diplom Intakes Form</h4>
+        <h4 class="tx-gray-800 mg-b-5">Diploma Intakes Form</h4>
         <p class="mg-b-0">Forms are used to collect diplom information with different element types of input, select, checkboxes, radios and more.</p>
       </div>
 
@@ -68,12 +68,12 @@
               <div class="d-flex">
                 <div id="slWrapper" class="parsley-select" style="width:100%">
                     <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Diplom</label>
+                      <label class="control-label">Diploma</label>
                       <select class="form-control pmd-select2 select2-show-search" name="diplom_id" data-parsley-class-handler="#slWrapper"
                         data-parsley-errors-container="#slErrorContainer" style="width:100%" required>
                         <option></option>
                         @foreach($diploms as $diplom)
-                          <option value="{{$diplom->id}}" @if($diplom->id == $intake->diplom_id) selected @endif>{{$diplom->name}}</option>
+                          <option value="{{$diplom->id}}" @if($diplom->id == $intake->diplom_id) selected @endif>{{$diplom->name}} | {{$diplom->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer"></div>

@@ -17,6 +17,7 @@ class StoreDiplomCourseRequest extends BaseRequest
 		$rules = [
             'diplom_id' => 'required|exists:diploms,id',
             'name' => 'required|min:3',
+            'credits' => 'required',
         ];
         return $rules;
     }

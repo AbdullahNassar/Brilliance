@@ -13,6 +13,7 @@
     <link href="{{asset('vendors/lib/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/lib/jquery-switchbutton/jquery.switchButton.css')}}" rel="stylesheet">
     <!-- Bracket CSS -->
+    <link href="{{asset('vendors/toastr/toastr.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('vendors/css/bracket.css')}}">
 @endsection
 @section('content')
@@ -33,13 +34,16 @@
           </div><!-- card-profile-img -->
           <h4 class="tx-normal tx-roboto tx-white">{{$lead->full_name}}</h4>
           <h6 class="tx-normal tx-roboto tx-white">{{$lead->job_title}} - {{$lead->company_name}}</h6>
+            <div class="col-lg-12">
+              <a href="{{ route('sales.activity.add' , ['id' => $lead->id]) }}" class="btn btn-customised">Convert Lead</a>
+            </div>
         </div><!-- card-body -->
       </div><!-- card -->
 
       <div class="tab-content br-profile-body">
         <div class="tab-pane fade active show">
           <div class="row">
-            <div class="col-lg-8 mg-t-30 mg-lg-t-0">
+            <div class="col-lg-8">
               <div class="media-list bg-white rounded shadow-base">
               @foreach ($activities as $activity)
                 <div class="media pd-20 pd-xs-30">
@@ -49,10 +53,16 @@
                       <div>
                         <h6 class="mg-b-2 tx-inverse tx-14">{{$advisor->name}}</h6>
                       </div>
-                      <span class="tx-12">{{(new DateTime($lead->created_at))->format('d-m-Y')}} {{(new DateTime($lead->created_at))->format('h:i A')}}</span>
+                      <span class="tx-12">{{(new DateTime($activity->created_at))->format('d-m-Y')}} {{(new DateTime($activity->created_at))->format('h:i A')}}</span>
                     </div><!-- d-flex -->
-                    <p class="mg-b-20"><strong style="color:#aa1916">Type : </strong> {{$activity->type}}  |   <strong style="color:#aa1916">Status :</strong> {{$activity->status}}  |   @if($activity->next_call != null)<strong style="color:#aa1916">Next Call :</strong> {{$activity->next_call}}@endif</p>
-                    <p class="mg-b-20"><strong style="color:#aa1916">Notes :</strong> {{$activity->notes}}</p>
+                    <p class="mg-b-20">
+                    @if($activity->type != null)<strong style="color:#aa1916;">Type : </strong> {{$activity->type}}  |   @endif
+                    @if($activity->status != null)<strong style="color:#aa1916;">Status :</strong> {{$activity->status}}  |   @endif
+                    @if($activity->next_call != null)<strong style="color:#aa1916;">Next Call :</strong> {{$activity->next_call}}  |   @endif
+                    @if($activity->temperature != null)<strong style="color:#aa1916;">Lead Interest Temperature :</strong> {{$activity->temperature}}  |   @endif
+                    @if($activity->rate != null)<strong style="color:#aa1916;">Lead Quality Rate :</strong> {{$activity->rate}} @endif 
+                    @if($activity->manager_id != null)<strong style="color:#aa1916;">Lead Assigned By :</strong> {{$activity->manager->name}} @endif 
+                    <br> <strong style="color:#aa1916;">Notes :</strong> {{$activity->notes}}</p>
                   </div><!-- media-body -->
                 </div><!-- media -->
                 @endforeach
@@ -84,8 +94,10 @@
                 <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Diplom</label>
                 <p class="tx-inverse mg-b-25">{{$lead->diplom->name}}</p>
                 @endif
-                <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Joined Date</label>
+                <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Campaign Date</label>
                 <p class="tx-inverse mg-b-25">{{(new DateTime($lead->created_time))->format('d-m-Y')}}</p>
+                <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Joined Date</label>
+                <p class="tx-inverse mg-b-25">{{(new DateTime($lead->created_at))->format('d-m-Y')}} {{(new DateTime($lead->created_at))->format('h:i A')}}</p>
               </div><!-- card -->
             </div><!-- col-lg-4 -->
           </div><!-- row -->

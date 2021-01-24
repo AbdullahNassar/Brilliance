@@ -127,7 +127,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-header wd-200">
           <ul class="list-unstyled user-profile-nav">
-            <li><a href="{{route('admin.profile')}}"><i class="icon ion-ios-person"></i> Edit Profile</a></li>
+            <!--<li><a href="{{route('admin.profile', ['id' => Auth::user()->id])}}"><i class="icon ion-ios-person"></i> Profile</a></li>-->
             <li><a href="{{route('logout')}}" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();"><i class="icon ion-power"></i> Sign Out</a></li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

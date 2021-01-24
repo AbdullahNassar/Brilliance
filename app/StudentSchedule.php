@@ -9,36 +9,51 @@ class StudentSchedule extends Model
 {
     use SoftDeletes;
     protected $table = 'student_schedule';
-    protected $fillable = ['date','time','student_id','program_id','program_intake_id',
-    'program_course_id','diplom_intake_id','diplom_course_id'];
+    protected $fillable = ['date','time_from','time_to','attend','student_id','doctor_id','program_id','program_intake_id',
+    'program_course_id','diplom_id','diplom_intake_id','diplom_course_id','training_course_id','notes','service','hall_id','type'];
 
     public function student()
     {
-        return $this->belongsTo(ProgramIntake::class);
+        return $this->belongsTo(Student::class,'student_id');
     }
 
-    public function programCourses()
+    public function doctor()
     {
-        return $this->belongsTo(ProgramCourse::class);
+        return $this->belongsTo(Doctor::class,'doctor_id');
     }
 
-    public function diplomIntakes()
+    public function programCourse()
     {
-        return $this->belongsTo(DiplomIntake::class);
+        return $this->belongsTo(ProgramCourse::class,'program_course_id');
     }
 
-    public function diplomCourses()
+    public function diplomCourse()
     {
-        return $this->belongsTo(DiplomCourse::class);
+        return $this->belongsTo(DiplomCourse::class,'diplom_course_id');
+    }
+
+    public function diplomIntake()
+    {
+        return $this->belongsTo(DiplomIntake::class,'diplom_intake_id');
+    }
+
+    public function programIntake()
+    {
+        return $this->belongsTo(ProgramIntake::class,'program_intake_id');
     }
 
     public function program()
     {
-        return $this->belongsTo(Program::class);
+        return $this->belongsTo(Program::class,'program_id');
     }
 
     public function diplom()
     {
-        return $this->belongsTo(Diplom::class);
+        return $this->belongsTo(Diplom::class,'diplom_id');
+    }
+
+    public function training()
+    {
+        return $this->belongsTo(TrainingCourse::class,'training_course_id');
     }
 }
