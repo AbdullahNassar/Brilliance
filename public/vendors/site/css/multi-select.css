@@ -1,0 +1,286 @@
+.select-menu {
+    width: 100%;
+    margin: 0px auto;
+    position: absolute;
+    /* background: white; */
+    padding: 10px;
+    padding-left: 0;
+    color: #7D8897;
+}
+
+.select-menu .menu-state,
+.select-menu .menu {
+    display: none;
+}
+
+.select-menu .select-label {
+    width: 240px;
+    height: 40px;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    background: white;
+    color: #7D8897;
+    border-radius: 7px;
+    margin-top: 10px;
+    border: 1px solid #EBEDF2;
+}
+
+.search-box__tabs li.is-active:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px;
+    border-color: transparent transparent #f6f6f6;
+    position: absolute;
+    bottom: 104px;
+    /* right: 20px; */
+    margin-left: 26px;
+}
+
+.select-menu .select-label:before {
+    content: attr(data-label);
+    width: 100%;
+    padding: 0 40px 0 16px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    margin-top: -1px;
+    font-size: 14px;
+    line-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: HelveticaNeue;
+    color: #7D8897;
+}
+
+.select-menu .arrow {
+    width: 40px;
+    height: 100%;
+    position: relative;
+    float: right;
+    background-color: #ffffff;
+}
+
+.select-menu .arrow:before,
+.select-menu .arrow:after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 1px;
+    background-color: #b5bcc0;
+    top: 45%;
+    left: 36%;
+}
+
+.select-menu .arrow:before {
+    margin-left: -2px;
+    transform: translate(-50%, -50%) rotateZ(45deg);
+}
+
+.select-menu .arrow:after {
+    margin-left: 4px;
+    transform: translate(-50%, -50%) rotateZ(-45deg);
+}
+
+.select-menu .menu {
+    width: 100%;
+    border-width: 0 1px 1px;
+    border-style: solid;
+    border-color: white;
+}
+
+.select-menu .menu-item {
+    width: 100%;
+    min-height: 35px;
+    padding: 7px 3px 7px 0px;
+    display: block;
+    position: relative;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-bottom: 1px solid #fff;
+    font-family: HelveticaNeue;
+}
+
+.select-menu .menu-item .choice-input {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.select-menu .menu-item span {
+    vertical-align: middle;
+}
+
+.select-menu .check-all {
+    padding-left: 8px;
+}
+
+.select-menu li:last-child .menu-item {
+    border: none;
+}
+
+.select-menu .filter {
+    padding: 0;
+}
+
+ul.menu.js-select-options {
+    background: white;
+    width: 240px;
+    height: 255px;
+    overflow-y: scroll;
+    padding-left: 10px;
+    color: #535B66;
+    padding-right: 20px;
+    margin-top: -67px;
+    font-size: 14px;
+    font-family: HelveticaNeue;
+    z-index: 2;
+    position: relative;
+}
+
+.filter-scholarship ul.menu.js-select-options {
+    background: white;
+    width: 240px;
+    height: 355px;
+    max-height: 100%;
+    overflow-y: scroll;
+    padding-left: 10px;
+    color: #535B66;
+    padding-right: 20px;
+    margin-top: 0px;
+    font-size: 14px;
+    font-family: HelveticaNeue;
+    z-index: 2;
+    position: relative;
+}
+
+.select-menu .filter input {
+    width: 215px;
+    height: 30px;
+    display: block;
+    padding: 0 35px;
+    font-size: 14px;
+    line-height: 16px;
+    border: none;
+    padding-left: 25px;
+    outline: none;
+    margin-left: -10px;
+    background: #F6F7FB;
+    margin-top: 23px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    overflow-x: hidden;
+}
+
+.select-menu .menu-state:checked+label .arrow:before,
+.select-menu .menu-state:checked+label .arrow:after {
+    width: 13px;
+    top: 50%;
+    margin-left: 0;
+}
+
+.select-menu .menu-state:checked~.menu {
+    display: block;
+}
+
+.checkbox,
+.radio {
+    display: none;
+}
+
+.checkbox+.choice-input,
+.radio+.choice-input {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: 1px solid #999;
+    outline: none;
+    background: #FFF;
+    cursor: pointer;
+}
+
+.checkbox:checked+.choice-input,
+.radio:checked+.choice-input {
+    border: 1px solid #2bb798;
+    background-color: #2bb798;
+    box-shadow: inset 0 0 0 2px #FFF;
+}
+
+.radio+.choice-input {
+    border-radius: 100%;
+}
+
+.toggle-container .toggle {
+    display: none;
+}
+
+.toggle-container .toggle+label {
+    transition: .2s ease;
+    display: inline-block;
+    height: 24px;
+    width: 44px;
+    position: relative;
+    border-radius: 60px;
+    background: #E5E5E5;
+    box-shadow: inset 0 0 0 2px #E5E5E5;
+    cursor: pointer;
+    white-space: nowrap;
+    /* White toggle */
+}
+
+.toggle-container .toggle+label:before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 24px;
+    width: 24px;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    background: #E5E5E5;
+    transition: .4s ease;
+}
+
+.toggle-container .toggle+label:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 22px;
+    width: 22px;
+    top: 50%;
+    margin-top: -11px;
+    left: 1px;
+    border-radius: 60px;
+    background: #FFF;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 0 rgba(0, 0, 0, 0.04), 0 4px 9px rgba(0, 0, 0, 0.15), 0 3px 3px rgba(0, 0, 0, 0.1);
+    transition: .35s ease;
+}
+
+.toggle-container .toggle+label span {
+    height: 24px;
+    line-height: 24px;
+    margin-left: 44px;
+    padding-left: 16px;
+}
+
+.toggle-container .toggle:checked+label:before {
+    width: 44px;
+    background: #2bb798;
+    transition: width .4s ease !important;
+}
+
+.toggle-container .toggle:checked+label:after {
+    left: 21px;
+}
+
+.toggle-container .toggle:checked+label {
+    box-shadow: inset 0 0 0 25px #E5E5E5;
+    transition: box-shadow 2.5s ease;
+}
