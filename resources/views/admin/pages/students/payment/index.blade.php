@@ -44,7 +44,11 @@
 
       <div class="br-pagebody">
         <div class="br-section-wrapper">
-        <h4 style="color:#000;">Student Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
+        @if(Route::currentRouteName()=='applicants.payment') 
+          <h4 style="color:#000;">Applicant Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
+          @elseif(Route::currentRouteName()=='students.payment')
+          <h4 style="color:#000;">Student Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
+          @endif  
           <div class="form-layout form-layout-1">
             <form class="parsley-style-1" id="payment_form" method="post" data-parsley-validate>
             {{csrf_field()}}

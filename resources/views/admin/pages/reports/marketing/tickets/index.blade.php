@@ -59,6 +59,7 @@
                                     <th>Source</th>
                                     <th>Status</th>
                                     <th>Advisor</th>
+                                    <th>Created at</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,6 +80,7 @@
                                             @endif
                                         </th>
                                         <th>{{$item->advisor->name}}</th>
+                                        <th>{{(new DateTime($item->created_at))->format('M d, Y')}}</th>
                                     </tr>
                                 @endforeach
                             </tbody>

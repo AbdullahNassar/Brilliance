@@ -91,7 +91,7 @@
                 <p class="tx-inverse mg-b-25">{{$lead->program->name}}</p>
                 @endif  
                 @if($lead->diplom_id != null)
-                <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Diplom</label>
+                <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Diploma</label>
                 <p class="tx-inverse mg-b-25">{{$lead->diplom->name}}</p>
                 @endif
                 <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Campaign Date</label>

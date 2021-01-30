@@ -15,7 +15,7 @@ class StoreDiplomIntakeRequest extends BaseRequest
     {
 		$rules = [
             'diplom_id' => 'required|exists:diploms,id',
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|max:30',
             'status'=>'required',
             'start'=>'required',
         ];

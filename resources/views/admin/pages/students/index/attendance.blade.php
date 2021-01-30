@@ -43,6 +43,7 @@
 
       <div class="br-pagebody">
         <div class="br-section-wrapper">
+        <h4 style="color:#000;">Student Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
           <div class="form-layout form-layout-1">
             <form class="parsley-style-1" id="attendance_form" method="post" data-parsley-validate>
                 {{csrf_field()}}
@@ -84,7 +85,7 @@
                     <div class="col-lg-2">
                     <label class="rdiobox">
                         <input name="service" onclick="ShowHideDiv()" type="radio" id="diplom" value="Diploma">
-                        <span>Diplom</span>
+                        <span>Diploma</span>
                     </label>
                     </div><!-- col-3 -->
                     <div class="col-lg-2">
@@ -118,7 +119,7 @@
                     <div class="d-flex">
                         <div id="slWrapper2" class="parsley-select" style="width:100%">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                            <label class="control-label">Diplom</label>
+                            <label class="control-label">Diploma</label>
                             <select id="diplom_list" onchange="diplomFunction()" class="form-control pmd-select2 select2-show-search" name="diplom_id" data-parsley-class-handler="#slWrapper2"
                                 data-parsley-errors-container="#slErrorContainer2" style="width:100%" disabled>
                             <option></option>

@@ -30,6 +30,7 @@ class CreateSalesLeadsTable extends Migration
             $table->string('study')->default(null)->nullable();
             $table->string('rate')->default(null)->nullable();
             $table->string('temperature')->default(null)->nullable();
+            $table->string('assign_date')->default(null)->nullable();
             $table->integer('sales_id')->unsigned()->default(null)->nullable();
             $table->foreign('sales_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('program_id')->unsigned()->default(null)->nullable();

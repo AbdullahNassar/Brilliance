@@ -89,7 +89,7 @@
                     success:function(data)
                     {
                         toastr.success(data.original.data.message, 'Success!', {timeOut: 5000});
-                        window.location.href = "{{URL::to('/admin/marketing/leads')}}"
+                        location.reload();
                     },
                     error: function(data) { 
                         var error = data.responseJSON.errors;

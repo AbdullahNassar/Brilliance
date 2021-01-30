@@ -15,7 +15,7 @@ class UpdateProgramIntakeRequest extends BaseRequest
     {
 		$rules = [
             'program_id' => 'required|exists:programs,id',
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|max:30',
             'status'=>'required',
             'start'=>'required',
         ];

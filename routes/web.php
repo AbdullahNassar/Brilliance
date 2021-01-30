@@ -153,7 +153,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             Route::post('/unpublish/{id}', ['as' => 'trainingcategories.unpublish', 'uses' => 'TrainingCategoriesController@unpublish']);
         });
 
-        Route::group(['middleware' =>['permission:admin'],'prefix' => 'student', 'namespace' => 'Students'], function () {
+        Route::group(['prefix' => 'student', 'namespace' => 'Students'], function () {
             Route::get('/', ['as' => 'admin.students', 'uses' => 'StudentsController@index']);
             Route::get('/upload/{id}', ['as' => 'admin.students.upload', 'uses' => 'StudentsController@uploadIndex']);
             Route::get('/addSchedule/{id}', ['as' => 'admin.students.schedule', 'uses' => 'StudentsController@scheduleIndex']);
@@ -197,13 +197,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             Route::post('/edit-pay', ['as' => 'payment.edit', 'uses' => 'StudentsController@editPlan']);
         });
 
-        Route::group(['middleware' =>'web','prefix' => 'applicants', 'namespace' => 'Students'], function () {
+        Route::group(['prefix' => 'applicants', 'namespace' => 'Students'], function () {
             Route::get('/', ['as' => 'admin.applicants', 'uses' => 'StudentsController@applicants']);
             Route::get('/upload-applicant/{id}', ['as' => 'admin.applicants.upload', 'uses' => 'StudentsController@uploadIndex']);
             Route::get('/edit-applicant/{id}', ['as' => 'applicants.edit', 'uses' => 'StudentsController@edit']);
             Route::get('/payment-applicant/{id}', ['as' => 'applicants.payment', 'uses' => 'StudentsController@payment']);
             Route::get('/pay-applicant/{id}', ['as' => 'applicants.pay', 'uses' => 'StudentsController@pay']);
             Route::post('/convert/{id}', ['as' => 'applicants.convert', 'uses' => 'StudentsController@convert']);
+            Route::get('/payment-print/{id}', ['as' => 'applicants.payment.print', 'uses' => 'StudentsController@paymentPrint']);
         });
 
         Route::group(['middleware' =>['permission:admin'],'prefix' => 'employee', 'namespace' => 'Employees'], function () {
@@ -226,7 +227,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             Route::post('/insertSchedule', ['as' => 'doctors.insertSchedule', 'uses' => 'DoctorsController@insertSchedule']);
             Route::get('/profile/{id}', ['as' => 'doctors.profile', 'uses' => 'DoctorsController@profile']);
             Route::get('/documents/{id}', ['as' => 'doctors.documents', 'uses' => 'DoctorsController@documents']);
-            Route::post('/upload', ['as' => 'documents.upload', 'uses' => 'DoctorsController@upload']);
+            Route::post('/upload', ['as' => 'doctorsdocuments.upload', 'uses' => 'DoctorsController@upload']);
             Route::get('/schedule/{id}', ['as' => 'doctors.schedule', 'uses' => 'DoctorsController@schedule']);
             Route::get('/add', ['as' => 'doctors.add', 'uses' => 'DoctorsController@add']);
             Route::post('/insert', ['as' => 'doctors.insert', 'uses' => 'DoctorsController@insert']);

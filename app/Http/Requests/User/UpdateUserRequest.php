@@ -17,8 +17,8 @@ class UpdateUserRequest extends BaseRequest
         $rules = [
             'image' => 'mimes:jpeg,jpg,png|max:20000|dimensions:min_width=500,min_height=500',
             'role' => 'required|exists:roles,name',
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            'name' => 'required|min:3|max:30',
+            'email' => 'required|email|min:3|max:30',
         ];
         return $rules;
     }

@@ -42,6 +42,11 @@
 
       <div class="br-pagebody">
         <div class="br-section-wrapper">
+        @if(Route::currentRouteName()=='admin.applicants.upload')
+        <h4 style="color:#000;">Applicant Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
+        @elseif(Route::currentRouteName()=='admin.students.upload')
+        <h4 style="color:#000;">Student Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
+        @endif
           <div class="form-layout form-layout-1">
             <form class="parsley-style-1" id="document_form" method="post" data-parsley-validate>
                 {{csrf_field()}}
@@ -71,12 +76,25 @@
                                                 <td><a target="_blank" href="{{asset("images/students/documents/$document->file")}}"><i class="fa fa-eye"></i></a></td>
                                                 <td>
                                                 <label class="ckbox">
-                                                    <input id="ckbox{{$loop->index+1}}" type="checkbox" checked>
+                                                    <input id="ckbox{{$loop->index+1}}" type="checkbox" checked disabled>
                                                     <span>Uploaded</span>
                                                 </label>
                                                 </td>
                                             </tr>
                                         @endif
+                                    @endforeach
+                                    @foreach($student_required_documents as $d)
+                                        <tr>
+                                            <td>{{$d->name}}</td>
+                                            <td>Empty</td>
+                                            <td>Empty</td>
+                                            <td>
+                                            <label class="ckbox">
+                                                <input id="ckbox{{$loop->index+1}}" type="checkbox" disabled>
+                                                <span>Not Uploaded</span>
+                                            </label>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -105,6 +123,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-12" id="progress_bar" style="display:none;">
+                        <div class="progress" id="myProgress">
+                            <div id="myBar" class="progress-bar bg-danger wd-95p" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div><br>
                     </div>
                     <div class="col-lg-12">
                         <button type="submit" class="btn btn-primary center">Save</button>

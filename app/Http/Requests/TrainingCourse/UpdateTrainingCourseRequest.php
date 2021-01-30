@@ -14,7 +14,7 @@ class UpdateTrainingCourseRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|max:30',
             'corporate_id'=>'required|exists:corporates,id',
             'category_id'=>'required|exists:training_categories,id',
         ];

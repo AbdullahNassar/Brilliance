@@ -136,7 +136,7 @@
                             
                             if(data.original.data.status_code == 200){
                                 toastr.success(data.original.data.message, 'Success!', {timeOut: 5000});
-                                window.location.href = "{{URL::to('/admin/student')}}"
+                                window.location.href = "{{URL::to('/admin/applicants/payment-print/')}}"+"/{{$student->id}}"
                             }
                         },
                     },

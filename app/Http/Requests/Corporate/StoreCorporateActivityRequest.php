@@ -23,7 +23,7 @@ class StoreCorporateActivityRequest extends BaseRequest
             'program_id'=>'sometimes|exists:programs,id',
             'diplom_id' => 'sometimes|exists:diploms,id',
             'corporate_id' => 'sometimes|exists:corporates,id',
-            'notes' => 'required',
+            'notes' => 'sometimes',
             'training_course_id' => 'sometimes|exists:training_courses,id',
         ];
     }

@@ -15,14 +15,14 @@ class StoreSalesLeadRequest extends BaseRequest
     {
         return [
             'created_time' => 'required',
-            'campaign_name' => 'required',
-            'form_name' => 'required',
-            'platform' => 'required',
-            'full_name' => 'required',
-            'job_title' => 'required',
-            'company_name' => 'required',
-            'phone_number' => 'required',
-            'email' => 'required',
+            'campaign_name' => 'required|min:3|max:30',
+            'form_name' => 'required|min:3|max:30',
+            'platform' => 'required|min:1|max:30',
+            'full_name' => 'required|min:3|max:30',
+            'job_title' => 'required|min:3|max:30',
+            'company_name' => 'required|min:3|max:30',
+            'phone_number' => 'required|min:3|max:30',
+            'email' => 'required|min:3|max:30',
             'study' => 'sometimes',
             'sales_id'=>'required|exists:users,id',
         ];

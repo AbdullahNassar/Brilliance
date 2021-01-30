@@ -42,10 +42,12 @@
 
       <div class="br-pagebody">
         <div class="br-section-wrapper">
+        <h4 style="color:#000;">Name : {{$lead->full_name}}</h4>
           <div class="form-layout form-layout-1">
             <form class="parsley-style-1" id="lead_form" method="post" data-parsley-validate>
             {{csrf_field()}}
             <input type="hidden" name="marketing_id" value="{{Auth::user()->id}}">
+            <input type="hidden" name="lead_id" value="{{$lead->id}}">
             <div class="row mg-b-25">
               <!--<div class="col-lg-6">
                 <div id="fnWrapper" class="parsley-input">

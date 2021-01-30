@@ -43,6 +43,7 @@
 
       <div class="br-pagebody">
         <div class="br-section-wrapper">
+        <h4 style="color:#000;">Student Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
           <div class="form-layout form-layout-1">
             <form class="parsley-style-1" id="courses_form" method="post" data-parsley-validate>
                 {{csrf_field()}}
@@ -156,7 +157,7 @@
                     <div class="d-flex">
                         <div id="slWrapper2" class="parsley-select" style="width:100%">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                            <label class="control-label">Diplom</label>
+                            <label class="control-label">Diploma</label>
                             <select id="diplom_list" onchange="diplomFunction()" class="form-control pmd-select2 select2-show-search" name="diplom_id" data-parsley-class-handler="#slWrapper2"
                                 data-parsley-errors-container="#slErrorContainer2" style="width:100%" disabled>
                             <option></option>
@@ -212,7 +213,7 @@
                     <div class="d-flex">
                         <div id="slWrapper6" class="parsley-select" style="width:100%">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                            <label class="control-label">Diplom Intake</label>
+                            <label class="control-label">Diploma's Intake</label>
                             <select id="diplom_intake" class="form-control pmd-select2 select2-show-search" name="diplom_intake_id" data-parsley-class-handler="#slWrapper6"
                                 data-parsley-errors-container="#slErrorContainer6" style="width:100%" disabled>
                             <option></option>
@@ -226,7 +227,7 @@
                     <div class="d-flex">
                         <div id="slWrapper7" class="parsley-select" style="width:100%">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                            <label class="control-label">Diplom Course</label>
+                            <label class="control-label">Diploma's Course</label>
                             <select id="diplom_course" class="form-control pmd-select2 select2-show-search" name="diplom_course_id" data-parsley-class-handler="#slWrapper7"
                                 data-parsley-errors-container="#slErrorContainer7" style="width:100%" disabled>
                             <option></option>

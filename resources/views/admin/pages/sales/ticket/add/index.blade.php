@@ -42,6 +42,7 @@
       </div>
       <div class="br-pagebody">
         <div class="br-section-wrapper">
+        <h4 style="color:#000;">Name : {{$lead->full_name}}</h4>
           <div class="form-layout form-layout-1">
             <form class="parsley-style-1" id="ticket_form" method="post" data-parsley-validate>
             {{csrf_field()}}
@@ -107,7 +108,7 @@
               <div class="col-lg-4">
                 <label class="rdiobox">
                   <input name="choose" onclick="ShowHideDiv()" type="radio" id="diplom" value="diplom">
-                  <span>Diplom</span>
+                  <span>Diploma</span>
                 </label>
               </div><!-- col-3 -->
               <br>

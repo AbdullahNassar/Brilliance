@@ -28,20 +28,6 @@
         });
     </script>
     <script type="text/javascript">
-        function readURL1(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#imgInp").change(function() {
-            readURL1(this);
-        });
-    </script>
-    <script type="text/javascript">
         /* Nice Scroll 
         $(document).ready(function() {
             "use strict";
@@ -89,7 +75,7 @@
                     success:function(data)
                     {
                         toastr.success(data.original.data.message, 'Success!', {timeOut: 5000});
-                        window.location.href = "{{URL::to('/admin/sales/leads')}}"
+                        location.reload();
                     },
                     error: function(data) { 
                         var error = data.responseJSON.errors;

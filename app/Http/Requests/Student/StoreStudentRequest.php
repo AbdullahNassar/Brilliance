@@ -14,13 +14,13 @@ class StoreStudentRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|max:30',
             'image' => 'mimes:jpeg,jpg,png|max:20000|dimensions:min_width=500,min_height=500',
-            'email1' => 'required|unique:students',
+            'email1' => 'required|unique:students|min:3|max:30',
             'gender' => 'required',
             'job' => 'sometimes',
-            'mobile1' => 'required|unique:students',
-            'national_id' => 'required|unique:students',
+            'mobile1' => 'required|unique:students|min:3|max:30',
+            'national_id' => 'required|unique:students|min:3|max:30',
             'location' => 'sometimes',
         ];
     }

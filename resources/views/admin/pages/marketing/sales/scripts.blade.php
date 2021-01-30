@@ -66,8 +66,14 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            $('#leads_datatable').DataTable({
+            var t = $('#leads_datatable').DataTable({
+                "columnDefs": [ {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 0
+                }],
                 "columns": [
+                    { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
@@ -76,39 +82,19 @@
                     { "orderable": true },
                 ],
                 responsive: true,
-                "pageLength": 25,
+                "order": [[ 1, 'asc' ]],
+                "pageLength": 10,
                 language: {
                     searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: 'show _MENU_ items',
                 }
             });
-
-            $('.form-layout .form-control').on('focusin', function(){
-                $(this).closest('.form-group').addClass('form-group-active');
-            });
-    
-            $('.form-layout .form-control').on('focusout', function(){
-                $(this).closest('.form-group').removeClass('form-group-active');
-            });
-    
-            // Input Masks
-            $('#dateMask').mask('99/99/9999');
-    
-            // Datepicker
-            $('.fc-datepicker').datepicker({
-                showOtherMonths: true,
-                selectOtherMonths: true
-            });
-    
-            $('#datepickerNoOfMonths').datepicker({
-                showOtherMonths: true,
-                selectOtherMonths: true,
-                numberOfMonths: 2
-            });
-    
-            // Time Picker
-            $('#tpBasic').timepicker();
+            t.on( 'order.dt search.dt', function () {
+                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                    cell.innerHTML = i+1;
+                } );
+            } ).draw();
         });
     </script>
 @endsection

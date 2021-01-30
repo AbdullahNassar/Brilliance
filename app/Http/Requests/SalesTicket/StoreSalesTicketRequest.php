@@ -14,13 +14,13 @@ class StoreSalesTicketRequest extends BaseRequest
     public function rules()
     {
         return [
-            'source' => 'required',
-            'study' => 'required',
-            'full_name' => 'required',
-            'job_title' => 'required',
-            'company_name' => 'required',
-            'phone_number' => 'required',
-            'email' => 'required',
+            'source' => 'required|min:3|max:30',
+            'study' => 'required|min:3|max:30',
+            'full_name' => 'required|min:3|max:30',
+            'job_title' => 'required|min:3|max:30',
+            'company_name' => 'required|min:3|max:30',
+            'phone_number' => 'required|min:3|max:30',
+            'email' => 'required|min:3|max:30',
             'sales_id'=>'required|exists:users,id',
         ];
     }

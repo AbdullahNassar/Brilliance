@@ -31,16 +31,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            var t = $('#leads_datatable').DataTable({
-                "columnDefs": [ {
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": 0
-                }],
+            $('#students_datatable').DataTable({
                 "columns": [
-                    { "orderable": true },
-                    { "orderable": true },
-                    { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
@@ -48,7 +40,6 @@
                     { "orderable": true },
                 ],
                 responsive: true,
-                "order": [[ 1, 'asc' ]],
                 "pageLength": 10,
                 language: {
                     searchPlaceholder: 'Search...',
@@ -56,11 +47,6 @@
                     lengthMenu: 'show _MENU_ items',
                 }
             });
-            t.on( 'order.dt search.dt', function () {
-                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                    cell.innerHTML = i+1;
-                } );
-            } ).draw();
 
         });
     </script>

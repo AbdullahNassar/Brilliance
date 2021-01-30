@@ -184,25 +184,21 @@ class SalesLeadHelper{
 
     public static function editSalesLead($request,$id)
 	{		
-		if($lead = SalesLead::find($id)) {
+		$lead = SalesLead::find($id);
             SalesLead::where('id',$id)->update([
-                'created_time' => $request['created_time'],
-                'campaign_name' => $request['campaign_name'],
-                'form_name' => $request['form_name'],
-                'platform' => $request['platform'],
                 'full_name' => $request['full_name'],
                 'job_title' => $request['job_title'],
                 'company_name' => $request['company_name'],
+                'form_name' => $request['form_name'],
+                'campaign_name' => $request['campaign_name'],
                 'phone_number' => $request['phone_number'],
                 'email' => $request['email'],
                 'sales_id' => $request['sales_id'],
                 'program_id' => $request['program_id'],
                 'diplom_id' => $request['diplom_id'],
                 'study' => $request['study'],
-                'status' => 0
             ]);
-            return ['data' => $lead];      
-		}
+        return ['data' => $lead];      
     }
 
     public static function insertData($request)

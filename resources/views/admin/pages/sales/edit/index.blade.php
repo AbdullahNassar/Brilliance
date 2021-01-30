@@ -43,10 +43,12 @@
 
       <div class="br-pagebody">
         <div class="br-section-wrapper">
+        <h4 style="color:#000;">Name : {{$lead->full_name}}</h4>
           <div class="form-layout form-layout-1">
             <form class="parsley-style-1" id="lead_form" method="post" data-parsley-validate>
             {{csrf_field()}}
             <input type="hidden" name="sales_id" value="{{Auth::user()->id}}">
+            <input type="hidden" name="lead_id" value="{{$lead->id}}">
             <div class="row mg-b-25">
               <div class="col-lg-6">
                 <div class="d-flex">
@@ -57,7 +59,7 @@
                           data-parsley-errors-container="#slErrorContainer" style="width:100%" >
                         <option></option>
                         @foreach($programs as $program)
-                          <option value="{{$program->id}}" @if($program->id == $course->program_id) selected @endif>{{$program->name}}</option>
+                          <option value="{{$program->id}}" @if($program->id == $lead->program_id) selected @endif>{{$program->name}} | {{$program->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer"></div>
@@ -69,12 +71,12 @@
                 <div class="d-flex">
                   <div id="slWrapper" class="parsley-select" style="width:100%">
                     <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Diplom</label>
+                      <label class="control-label">Diploma</label>
                       <select class="form-control pmd-select2 select2-show-search" name="diplom_id" data-parsley-class-handler="#slWrapper"
                           data-parsley-errors-container="#slErrorContainer" style="width:100%" >
                         <option></option>
                         @foreach($diploms as $diplom)
-                          <option value="{{$diplom->id}}" @if($diplom->id == $course->diplom_id) selected @endif>{{$diplom->name}}</option>
+                          <option value="{{$diplom->id}}" @if($diplom->id == $lead->diplom_id) selected @endif>{{$diplom->name}} | {{$diplom->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer"></div>
@@ -86,7 +88,7 @@
                 <div id="fnWrapper" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Created Time</label>
-                      <input class="form-control datepicker dpd" value="{{$lead->created_time}}" type="text" name="created_time" data-date-format="dd-mm-yyyy" data-parsley-class-handler="#fnWrapper" required autocomplete="off">
+                      <input class="form-control datepicker dpd" value="{{$lead->created_time}}" type="text" name="created_time" data-date-format="dd-mm-yyyy" data-parsley-class-handler="#fnWrapper" autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -94,7 +96,7 @@
                 <div id="lnWrapper" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Campaign Name</label>
-                      <input class="form-control" type="text" value="{{$lead->campaign_name}}" name="campaign_name" data-parsley-class-handler="#lnWrapper" required autocomplete="off">
+                      <input class="form-control" type="text" value="{{$lead->campaign_name}}" name="campaign_name" data-parsley-class-handler="#lnWrapper" autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -102,7 +104,7 @@
                 <div id="fnWrapper1" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Form Name</label>
-                      <input class="form-control" type="text" value="{{$lead->form_name}}" name="form_name" data-parsley-class-handler="#fnWrapper1" required autocomplete="off">
+                      <input class="form-control" type="text" value="{{$lead->form_name}}" name="form_name" data-parsley-class-handler="#fnWrapper1" autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -110,7 +112,7 @@
                 <div id="lnWrapper1" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Platform</label>
-                      <input class="form-control" type="text" value="{{$lead->platform}}" name="platform" data-parsley-class-handler="#lnWrapper1" required autocomplete="off">
+                      <input class="form-control" type="text" value="{{$lead->platform}}" name="platform" data-parsley-class-handler="#lnWrapper1" autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -118,7 +120,7 @@
                 <div id="fnWrapper2" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Full Name</label>
-                      <input class="form-control" type="text" value="{{$lead->full_name}}" name="full_name" data-parsley-class-handler="#fnWrapper2" required autocomplete="off">
+                      <input class="form-control" type="text" value="{{$lead->full_name}}" name="full_name" data-parsley-class-handler="#fnWrapper2" autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -126,7 +128,7 @@
                 <div id="lnWrapper2" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Job Title</label>
-                      <input class="form-control" type="text" value="{{$lead->job_title}}" name="job_title" data-parsley-class-handler="#lnWrapper2" required autocomplete="off">
+                      <input class="form-control" type="text" value="{{$lead->job_title}}" name="job_title" data-parsley-class-handler="#lnWrapper2" autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -134,7 +136,7 @@
                 <div id="fnWrapper3" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Company Name</label>
-                      <input class="form-control" type="text" value="{{$lead->company_name}}" name="company_name" data-parsley-class-handler="#fnWrapper3" required autocomplete="off">
+                      <input class="form-control" type="text" value="{{$lead->company_name}}" name="company_name" data-parsley-class-handler="#fnWrapper3" autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -142,7 +144,7 @@
                 <div id="lnWrapper3" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Phone Number</label>
-                      <input class="form-control" type="text" value="{{$lead->phone_number}}" name="phone_number" data-parsley-class-handler="#lnWrapper3" required autocomplete="off">
+                      <input class="form-control" type="text" value="{{$lead->phone_number}}" name="phone_number" data-parsley-class-handler="#lnWrapper3" autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -150,7 +152,7 @@
                 <div id="fnWrapper4" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Email</label>
-                      <input class="form-control" type="email" value="{{$lead->email}}" name="email" data-parsley-class-handler="#fnWrapper4" required autocomplete="off">
+                      <input class="form-control" type="email" value="{{$lead->email}}" name="email" data-parsley-class-handler="#fnWrapper4" autocomplete="off">
                   </div>
                 </div>
               </div>

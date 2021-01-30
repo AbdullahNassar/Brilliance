@@ -88,7 +88,7 @@
                             </thead>
                             <tbody>
                                 @foreach($leads as $item)
-                                @if($item->activity_status != "Closed")
+                                @if($item->activity_status != "Not Interested")
                                     <tr>
                                         <th>
                                             <label class="ckbox">
@@ -104,7 +104,8 @@
                                         <th>{{$item->activity_status}} @if($item->next_call != null) | {{$item->next_call}} @endif</th>
                                         @if(Route::currentRouteName()=='admin.sales.manager.leads' || Route::currentRouteName()=='sales.leads.unassigned' || Route::currentRouteName()=='sales.leads.assigned' || Route::currentRouteName()=='sales.manager.follow' || Route::currentRouteName()=='sales.manager.potential' || Route::currentRouteName()=='sales.manager.hold' || Route::currentRouteName()=='sales.manager.noAnswer' || Route::currentRouteName()=='sales.manager.interested' || Route::currentRouteName()=='sales.manager.outOfReach' || Route::currentRouteName()=='sales.manager.closed') <th>{{$item->user->name}}</th>@endif
                                         <th>
-                                            <a href="{{ route('sales.activity.add' , ['id' => $item->id]) }}" class="text-primary edit" title="Add Activity"><i class="fa fa-edit"></i></a> 
+                                            <a href="{{ route('sales.leads.edit' , ['id' => $item->id]) }}" class="text-primary edit" title="Edit Lead"><i class="fa fa-edit"></i></a> 
+                                            <a href="{{ route('sales.activity.add' , ['id' => $item->id]) }}" class="text-primary edit" title="Add Activity"><i class="fa fa-clock-o"></i></a> 
                                         </th>
                                     </tr>
                                 @endif

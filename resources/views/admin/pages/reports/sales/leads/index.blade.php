@@ -55,8 +55,9 @@
                                     <th></th>
                                     <th>Full Name</th>
                                     <th>Mobile</th>
-                                    <th>Temperature</th>
-                                    <th>Rate</th>
+                                    <th>Join Date</th>
+                                    <th>Campaign</th>
+                                    <th>Program</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -66,8 +67,9 @@
                                         <td @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif></td>
                                         <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif><a href="{{ route('lead.profile' , ['id' => $item->id]) }}" @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->full_name}}</a></th>
                                         <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->phone_number}}</th>
-                                        <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->temperature}}</th>
-                                        <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->rate}}</th>
+                                        <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->created_time}}</th>
+                                        <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->campaign_name}}</th>
+                                        <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->form_name}}</th>
                                         <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->activity_status}} @if($item->next_call != null) | {{$item->next_call}} @endif</th>
                                     </tr>
                                 @endforeach

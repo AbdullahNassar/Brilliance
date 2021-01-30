@@ -14,8 +14,8 @@ class ConvertRequest extends BaseRequest
     public function rules()
     {
         return [
-            'email1'=>'required|email|unique:students',
-            'mobile1'=>'required|unique:students',
+            'email1'=>'required|email|unique:students|min:3|max:30',
+            'mobile1'=>'required|unique:students|min:3|max:30',
             'lead_id'=>'required',
             'user_id'=>'required',
         ];

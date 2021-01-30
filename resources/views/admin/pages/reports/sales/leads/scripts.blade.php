@@ -44,6 +44,7 @@
                     { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
+                    { "orderable": true },
                 ],
                 responsive: true,
                 "order": [[ 1, 'asc' ]],

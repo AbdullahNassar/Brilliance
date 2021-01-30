@@ -21,6 +21,7 @@ use App\StudentCourse;
 use App\User;
 use Auth;
 use DB;
+use Carbon;
 
 class SalesLeadsController extends MainController
 {
@@ -43,7 +44,7 @@ class SalesLeadsController extends MainController
     }
 
     public function update(UpdateSalesLeadRequest $request){
-        $id = $request->sales_id;
+        $id = $request->lead_id;
         $lead = SalesLeadHelper::editSalesLead($request,$id);
         if($lead)
         return json_encode($this->respondWithSuccess(trans('messages.'.$this->messageKeyName().'.update',[
@@ -60,23 +61,23 @@ class SalesLeadsController extends MainController
     }
 
     public static function index(){
-        $leads = SalesLead::where('status','!=',5)->where('activity_status','!=',"Not Interested")->get();
+        $leads = SalesLead::where('status','!=',5)->where('activity_status','!=',"Not Interested")->orderBy('created_at','DESC')->get();
         return view('admin.pages.sales.index.index', compact('leads'));
     }
 
     public static function contacts(){
-        $leads = SalesLead::get()->where('activity_status','=',"Not Interested");
+        $leads = SalesLead::get()->where('activity_status','=',"Not Interested")->orderBy('created_at','DESC');
         $applicants = DB::table('students')->where('deleted_at','!=',null)->get();
         return view('admin.pages.sales.contacts.index', compact('leads','applicants'));
     }
 
     public static function leadsReport(){
-        $leads = SalesLead::all();
+        $leads = SalesLead::orderBy('created_at','DESC')->get();
         return view('admin.pages.reports.sales.leads.index', compact('leads'));
     }
 
     public static function activitiesReport(){
-        $activities = SalesActivity::all();
+        $activities = SalesActivity::orderBy('created_at','DESC')->get();
         return view('admin.pages.reports.sales.activities.index', compact('activities'));
     }
 
@@ -89,19 +90,19 @@ class SalesLeadsController extends MainController
 
     public static function manager(){
         $user = User::find(Auth::user()->id);
-        $leads = SalesLead::where('sales_id',$user->id)->where('status','!=',5)->where('activity_status','!=',"Not Interested")->get();
+        $leads = SalesLead::where('manager_id',$user->id)->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $users = User::where('role','sales')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 
     public static function advisors(){
-        $leads = SalesLead::where('status','!=',5)->where('activity_status','!=',"Not Interested")->get();
+        $leads = SalesLead::where('status','!=',5)->orderBy('created_at','DESC')->get();
         return view('admin.pages.sales.index.index', compact('leads'));
     }
 
     public static function advisor(){
         $user = User::find(Auth::user()->id);
-        $leads = SalesLead::where('sales_id',$user->id)->where('status','!=',5)->where('activity_status','!=',"Not Interested")->get();
+        $leads = SalesLead::where('sales_id',$user->id)->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $managers = User::where('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','managers'));
     }
@@ -144,24 +145,26 @@ class SalesLeadsController extends MainController
     }
 
     public static function assigned(){
-        $leads = SalesLead::where('status',1)->get();
+        $leads = SalesLead::where('status',1)->orderBy('created_at','DESC')->get();
         $users = User::where('role','sales')->orWhere('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 
     public static function unassigned(){
-        $leads = SalesLead::where('status','!=',1)->where('status','!=',5)->get();
+        $leads = SalesLead::where('status','!=',1)->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $users = User::where('role','sales')->orWhere('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 
     public function assign(AssignSalesLeadRequest $request){
+        $now = Carbon::now()->format('j-m-Y');
         $leads = SalesLead::all();
         foreach($leads as $lead){
             if($request['check'.$lead->id] == 1 && $request['checked'.$lead->id] == $lead->id){
                 SalesLead::where('id',$lead->id)->update([
                     'sales_id' => $request->sales_id,
-                    'status' => $request->status
+                    'status' => $request->status,
+                    'assign_date' => $now
                 ]);
                 SalesActivity::create([
                     'notes' => "Lead Assigned",
@@ -234,92 +237,92 @@ class SalesLeadsController extends MainController
 
     public static function follow(){
         $user = User::where('id',Auth::user()->id)->first();
-        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Time/ Not Decided')->where('status','!=',5)->get();
+        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Time/ Not Decided')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $managers = User::where('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','managers'));
     }
 
     public static function potential(){
         $user = User::where('id',Auth::user()->id)->first();
-        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Potential')->where('status','!=',5)->get();
+        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Potential')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $managers = User::where('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','managers'));
     }
 
     public static function hold(){
         $user = User::where('id',Auth::user()->id)->first();
-        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Hold')->where('status','!=',5)->get();
+        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Hold')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $managers = User::where('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','managers'));
     }
 
     public static function noAnswer(){
         $user = User::where('id',Auth::user()->id)->first();
-        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','No Answer')->where('status','!=',5)->get();
+        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','No Answer')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $managers = User::where('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','managers'));
     }
 
     public static function interested(){
         $user = User::where('id',Auth::user()->id)->first();
-        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Interested')->where('status','!=',5)->get();
+        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Interested')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $managers = User::where('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','managers'));
     }
 
     public static function outOfReach(){
         $user = User::where('id',Auth::user()->id)->first();
-        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Out Of Reach')->where('status','!=',5)->get();
+        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Out Of Reach')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $managers = User::where('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','managers'));
     }
 
     public static function closed(){
         $user = User::where('id',Auth::user()->id)->first();
-        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Not Interested')->where('status','!=',5)->get();
+        $leads = SalesLead::where('sales_id',$user->id)->where('activity_status','Not Interested')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         $managers = User::where('role','sales-manager')->get();
         return view('admin.pages.sales.index.index', compact('leads','managers'));
     }
 
     public static function followleads(){
         $users = User::where('role','sales')->get();
-        $leads = SalesLead::where('activity_status','Time/ Not Decided')->where('status','!=',5)->get();
+        $leads = SalesLead::where('activity_status','Time/ Not Decided')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 
     public static function potentialleads(){
         $users = User::where('role','sales')->get();
-        $leads = SalesLead::where('activity_status','Potential')->where('status','!=',5)->get();
+        $leads = SalesLead::where('activity_status','Potential')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 
     public static function holdleads(){
         $users = User::where('role','sales')->get();
-        $leads = SalesLead::where('activity_status','Hold')->where('status','!=',5)->get();
+        $leads = SalesLead::where('activity_status','Hold')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 
     public static function noAnswerleads(){
         $users = User::where('role','sales')->get();
-        $leads = SalesLead::where('activity_status','No Answer')->where('status','!=',5)->get();
+        $leads = SalesLead::where('activity_status','No Answer')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 
     public static function interestedleads(){
         $users = User::where('role','sales')->get();
-        $leads = SalesLead::where('activity_status','Interested')->where('status','!=',5)->get();
+        $leads = SalesLead::where('activity_status','Interested')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 
     public static function outOfReachleads(){
         $users = User::where('role','sales')->get();
-        $leads = SalesLead::where('activity_status','Out Of Reach')->where('status','!=',5)->get();
+        $leads = SalesLead::where('activity_status','Out Of Reach')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 
     public static function closedleads(){
         $users = User::where('role','sales')->get();
-        $leads = SalesLead::where('activity_status','Not Interested')->where('status','!=',5)->get();
+        $leads = SalesLead::where('activity_status','Not Interested')->where('status','!=',5)->orderBy('created_at','DESC')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }
 }

@@ -112,7 +112,7 @@
                         <div class="d-flex">
                             <div id="slWrapper7" class="parsley-select" style="width:100%">
                                 <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                                    <label class="control-label">Diplom Course</label>
+                                    <label class="control-label">Diploma's Course</label>
                                     <select class="form-control pmd-select2 select2-show-search" name="diplom_course_id" data-parsley-class-handler="#slWrapper7"
                                         data-parsley-errors-container="#slErrorContainer7" style="width:100%">
                                       <option></option>

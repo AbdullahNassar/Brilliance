@@ -140,7 +140,7 @@
                     <div class="col-lg-2">
                     <label class="rdiobox">
                         <input name="service" onclick="ShowHideDiv()" type="radio" id="diplom" value="Diploma">
-                        <span>Diplom</span>
+                        <span>Diploma</span>
                     </label>
                     </div><!-- col-3 -->
                     <div class="col-lg-2">
@@ -174,7 +174,7 @@
                     <div class="d-flex">
                         <div id="slWrapper2" class="parsley-select" style="width:100%">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                            <label class="control-label">Diplom</label>
+                            <label class="control-label">Diploma</label>
                             <select id="diplom_list" onchange="diplomFunction()" class="form-control pmd-select2 select2-show-search" name="diplom_id" data-parsley-class-handler="#slWrapper2"
                                 data-parsley-errors-container="#slErrorContainer2" style="width:100%" disabled>
                             <option></option>
@@ -202,7 +202,7 @@
                     <div class="d-flex">
                         <div id="slWrapper4" class="parsley-select" style="width:100%">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                            <label class="control-label">Program Intake</label>
+                            <label class="control-label">Program's Intake</label>
                             <select id="program_intake" class="form-control pmd-select2 select2-show-search" name="program_intake_id" data-parsley-class-handler="#slWrapper4"
                                 data-parsley-errors-container="#slErrorContainer4" style="width:100%" disabled>
                             <option></option>
@@ -216,7 +216,7 @@
                     <div class="d-flex">
                         <div id="slWrapper5" class="parsley-select" style="width:100%">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                            <label class="control-label">Program Course</label>
+                            <label class="control-label">Program's Course</label>
                             <select id="program_course" class="form-control pmd-select2 select2-show-search" name="program_course_id" data-parsley-class-handler="#slWrapper5"
                                 data-parsley-errors-container="#slErrorContainer5" style="width:100%" disabled>
                             <option></option>
@@ -230,7 +230,7 @@
                     <div class="d-flex">
                         <div id="slWrapper6" class="parsley-select" style="width:100%">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                            <label class="control-label">Diplom Intake</label>
+                            <label class="control-label">Diploma's Intake</label>
                             <select id="diplom_intake" class="form-control pmd-select2 select2-show-search" name="diplom_intake_id" data-parsley-class-handler="#slWrapper6"
                                 data-parsley-errors-container="#slErrorContainer6" style="width:100%" disabled>
                             <option></option>
@@ -244,7 +244,7 @@
                     <div class="d-flex">
                         <div id="slWrapper7" class="parsley-select" style="width:100%">
                         <div class="form-group pmd-textfield pmd-textfield-floating-label select_data">
-                            <label class="control-label">Diplom Course</label>
+                            <label class="control-label">Diploma's Course</label>
                             <select id="diplom_course" class="form-control pmd-select2 select2-show-search" name="diplom_course_id" data-parsley-class-handler="#slWrapper7"
                                 data-parsley-errors-container="#slErrorContainer7" style="width:100%" disabled>
                             <option></option>

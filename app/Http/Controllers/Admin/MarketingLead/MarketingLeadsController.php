@@ -29,7 +29,7 @@ class MarketingLeadsController extends MainController
     }
 
     public function update(UpdateMarketingLeadRequest $request){
-        $id = $request->marketing_id;
+        $id = $request->lead_id;
         $lead = MarketingLeadHelper::editMarketingLead($request,$id);
         if($lead)
         return json_encode($this->respondWithSuccess(trans('messages.'.$this->messageKeyName().'.update',[
@@ -46,7 +46,7 @@ class MarketingLeadsController extends MainController
     }
 
     public function index(){
-        $leads = MarketingLead::all();
+        $leads = MarketingLead::orderBy('created_at','DESC')->get();
         $users = User::where('role','sales-manager')->get();
         return view('admin.pages.marketing.index.index', compact('leads','users'));
     }
@@ -319,7 +319,7 @@ class MarketingLeadsController extends MainController
             'company_name' => $ticket->company_name,
             'phone_number' => $ticket->phone_number,
             'email' => $ticket->email,
-            'sales_id' => Auth::user()->id,
+            'sales_id' => $ticket->sales_id,
             'program_id' => $ticket->program_id,
             'diplom_id' => $ticket->diplom_id,
             'status' => 0

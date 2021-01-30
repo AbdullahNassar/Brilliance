@@ -40,8 +40,8 @@ class HomeController extends Controller
     {
         //app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
         $marketing_leads = MarketingLead::where('marketing_id',Auth::user()->id)->get();
-        $sales_leads = SalesLead::where('sales_id',Auth::user()->id)->where('status','!=',5)->where('activity_status','!=',"Not Interested")->get();
-        $manager_leads = SalesLead::where('manager_id',Auth::user()->id)->where('status','!=',5)->where('activity_status','!=',"Not Interested")->get();
+        $sales_leads = SalesLead::where('sales_id',Auth::user()->id)->where('status','!=',5)->get();
+        $manager_leads = SalesLead::where('manager_id',Auth::user()->id)->where('status','!=',5)->get();
         return view('admin.pages.home.home',compact('marketing_leads','sales_leads','manager_leads'));
     }
 

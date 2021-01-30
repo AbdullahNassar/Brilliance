@@ -294,7 +294,7 @@ class StudentsController extends MainController
     }
 
     public function upload(StoreStudentDocumentRequest $request){
-        $old = StudentDocument::where('id',$request['document_id'])
+        $old = StudentDocument::where('document_id',$request['document_id'])
                     ->where('student_id',$request['id'])->first();
         if($old)
         return json_encode($this->respondWithError(trans('messages.old')));
@@ -306,17 +306,17 @@ class StudentsController extends MainController
         ])));
     }
 
-    public static function index(){
+    public function index(){
         $students = Student::where('type','Student')->get();
         return view('admin.pages.students.index.index', compact('students'));
     }
 
-    public static function applicants(){
+    public function applicants(){
         $students = Student::where('type','Applicant')->get();
         return view('admin.pages.applicants.index.index', compact('students'));
     }
 
-    public static function grades(){
+    public function grades(){
         $students = Student::where('training_course_id', null)->get();
         $doctors = Doctor::all();
         $program_courses = ProgramCourse::where('active',1)->get();
@@ -324,7 +324,7 @@ class StudentsController extends MainController
         return view('admin.pages.students.index.grades', compact('students','doctors','program_courses','diplom_courses'));
     }
 
-    public static function profile($id){
+    public function profile($id){
         $count = 0;
         $student = Student::find($id);
         $student_documents = $student->studentDocuments;
@@ -342,7 +342,7 @@ class StudentsController extends MainController
         return redirect('/admin/students');
     }
 
-    public static function uploadIndex($id){
+    public function uploadIndex($id){
         $ids = array();
         $count = 0;
         $student = Student::find($id);
@@ -359,7 +359,7 @@ class StudentsController extends MainController
         return redirect('/admin/students');
     }
 
-    public static function scheduleIndex($id){
+    public function scheduleIndex($id){
         $student = Student::find($id);
         $programs = Program::where('active',1)->get();
         $diploms = Diplom::where('active',1)->get();
@@ -372,7 +372,7 @@ class StudentsController extends MainController
         return redirect('/admin/students');
     }
 
-    public static function attendance(){
+    public function attendance(){
         $students = Student::all();
         $programs = Program::where('active',1)->get();
         $diploms = Diplom::where('active',1)->get();
@@ -437,7 +437,7 @@ class StudentsController extends MainController
         }
     }
 
-    public static function schedulesIndex(){
+    public function schedulesIndex(){
         $students = Student::all();
         $programs = Program::where('active',1)->get();
         $diploms = Diplom::where('active',1)->get();
@@ -447,7 +447,7 @@ class StudentsController extends MainController
         return view('admin.pages.students.index.schedules', compact('students','programs','diploms','courses','doctors','halls'));
     }
 
-    public static function coursesIndex(){
+    public function coursesIndex(){
         $students = Student::all();
         $programs = Program::where('active',1)->get();
         $diploms = Diplom::where('active',1)->get();
@@ -457,7 +457,7 @@ class StudentsController extends MainController
         return view('admin.pages.students.index.courses', compact('students','programs','diploms','courses','doctors','halls'));
     }
 
-    public static function progress($id){
+    public function progress($id){
         $student = Student::find($id);
         $doctors = Doctor::all();
         $program_courses = ProgramCourse::where('active',1)->get();
@@ -468,7 +468,7 @@ class StudentsController extends MainController
         return redirect('/admin/students');
     }
 
-    public static function payment($id){
+    public function payment($id){
         $student = Student::find($id);
         if($student)
         return view('admin.pages.students.payment.index', compact('student'));
@@ -476,7 +476,7 @@ class StudentsController extends MainController
         return redirect('/admin/students');
     }
 
-    public static function plan($id){
+    public function plan($id){
         $pay = StudentPayment::find($id);
         return view('admin.pages.students.payment.edit', compact('pay'));
     }
@@ -498,7 +498,7 @@ class StudentsController extends MainController
         ])));
     }
 
-    public static function pay($id){
+    public function pay($id){
         $student = Student::find($id);
         $now = Carbon::now()->format('j-m-Y');
         $payments = StudentPayment::where('student_id',$id)->get();
@@ -509,7 +509,7 @@ class StudentsController extends MainController
         return redirect('/admin/students');
     }
 
-    public static function print($id){
+    public function print($id){
         $student = Student::find($id);
         $now = Carbon::now()->format('j-m-Y');
         $payments = Cash::where('student_id',$id)->where('date',$now)->get();
@@ -530,19 +530,19 @@ class StudentsController extends MainController
         return view('admin.pages.print.invoice.index', compact('student','payments','now','total_egp','total_euro','total_usd'));
     }
 
-    public static function multipay(){
+    public function multipay(){
         $students = Student::all();
         $now = Carbon::now()->format('j-m-Y');
         return view('admin.pages.students.multipay.pay', compact('students','now'));
     }
 
-    public static function add(){
+    public function add(){
         $corporates = Corporate::all();
         $last = Corporate::where('deleted_at','=', null)->orWhere('deleted_at','!=', null)->orderBy('created_at', 'desc')->first();
         return view('admin.pages.students.add.index',compact('corporates','last'));
     }
 
-    public static function edit($id){
+    public function edit($id){
         $ids = array();
         $count = 0;
         $student = Student::find($id);
@@ -570,7 +570,7 @@ class StudentsController extends MainController
         return redirect('/admin/students');
     }
 
-    public static function schedule($id){
+    public function schedule($id){
         $student = Student::find($id);
         if($student)
         return view('admin.pages.students.index.calendar', compact('student'));
@@ -830,5 +830,26 @@ class StudentsController extends MainController
         ]);
         
         return redirect()->back();
+    }
+
+    public function paymentPrint($id){
+        $student = Student::find($id);
+        $now = Carbon::now()->format('j-m-Y');
+        $payments = StudentPayment::where('student_id',$id)->get();
+        $total_egp = 0;
+        $total_euro = 0;
+        $total_usd = 0;
+        foreach($payments as $payment){
+            if($payment->egp_amount != null){
+                $total_egp += $payment->egp_amount;
+            }
+            if($payment->euro_amount != null){
+                $total_euro += $payment->euro_amount;
+            }
+            if($payment->usd_amount != null){
+                $total_usd += $payment->usd_amount;
+            }
+        }
+        return view('admin.pages.print.payment.index', compact('student','now','payments','total_egp','total_euro','total_usd'));
     }
 }

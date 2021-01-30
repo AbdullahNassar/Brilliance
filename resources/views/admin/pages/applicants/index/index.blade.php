@@ -69,6 +69,7 @@
                                         <a href="{{ route('applicants.payment' , ['id' => $item->id]) }}" class="text-primary" title="Applicant Payment"><i class="fa fa-money"></i></a> 
                                         <a href="{{ route('applicants.pay' , ['id' => $item->id]) }}" class="text-primary" title="Pay"><i class="fa fa-credit-card"></i></a>   
                                         <a title="Back to Contact" href="#" class="text-danger btndelet" id="{{$item->id}}"><i class="fa fa-close"></i></a>
+                                        <a href="{{ route('applicants.payment.print' , ['id' => $item->id]) }}" class="text-primary" title="Print Payment Plan"><i class="fa fa-print"></i></a>   
                                         <form class="publish" method="POST" action="{{route('applicants.convert', ['id' => $item->id])}}">
                                             {{csrf_field()}}
                                             <button type="submit" class="btn btn-danger btn-icon mg-r-5">

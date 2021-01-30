@@ -11,7 +11,7 @@ class SalesLead extends Model
     protected $table = 'sales_leads';
     protected $fillable = ['created_time','campaign_name','form_name','platform','full_name','job_title','company_name',
                             'phone_number','email','status','activity_status','next_call','study','sales_id','program_id',
-                            'diplom_id','rate','temperature','manager_id'];
+                            'diplom_id','rate','temperature','manager_id','assign_date'];
 
     public function user()
     {

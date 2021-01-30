@@ -161,7 +161,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
 
-                var t = $('#leads_datatable').DataTable({
+                var t = $('#sales_datatable').DataTable({
                     "columnDefs": [ {
                         "searchable": false,
                         "orderable": false,

@@ -57,7 +57,7 @@
                         data-parsley-errors-container="#slErrorContainer" style="width:100%" required>
                         <option></option>
                         @foreach($programs as $program)
-                          <option value="{{$program->id}}">{{$program->name}}</option>
+                          <option value="{{$program->id}}">{{$program->name}} | {{$program->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer"></div>
@@ -69,12 +69,12 @@
                 <div class="d-flex">
                   <div id="slWrapper" class="parsley-select" style="width:100%">
                     <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                      <label class="control-label">Diplom</label>
+                      <label class="control-label">Diploma</label>
                       <select class="form-control pmd-select2 select2-show-search" name="diplom_id" data-parsley-class-handler="#slWrapper"
                         data-parsley-errors-container="#slErrorContainer" style="width:100%" required>
                         <option></option>
                         @foreach($diploms as $diplom)
-                          <option value="{{$diplom->id}}">{{$diplom->name}}</option>
+                          <option value="{{$diplom->id}}">{{$diplom->name}} | {{$diplom->university->name}}</option>
                         @endforeach
                       </select>
                       <div id="slErrorContainer"></div>

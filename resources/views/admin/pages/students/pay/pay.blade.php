@@ -44,7 +44,11 @@
 
       <div class="br-pagebody">
         <div class="br-section-wrapper">
-        <h4 style="color:#000;">Student Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
+          @if(Route::currentRouteName()=='applicants.pay') 
+          <h4 style="color:#000;">Applicant Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
+          @elseif(Route::currentRouteName()=='students.pay')
+          <h4 style="color:#000;">Student Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
+          @endif          
           <div class="form-layout form-layout-1">
             <div class="row mg-b-25">
               <div class="col-lg-12">

@@ -224,6 +224,24 @@
             });
         
             $('#document_form').on('submit', function(event){
+                document.getElementById("progress_bar").style.display = "block";
+                var i = 0;
+                if (i == 0) {
+                    i = 1;
+                    var elem = document.getElementById("myBar");
+                    var width = 10;
+                    var id = setInterval(frame, 10);
+                    function frame() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                        i = 0;
+                    } else {
+                        width++;
+                        elem.style.width = width + "%";
+                        elem.innerHTML = width  + "%";
+                    }
+                    }
+                }
                 event.preventDefault();
                 $.ajax({
                     headers: {
@@ -263,7 +281,7 @@
                             
                             if(data.original.data.status_code == 200){
                                 toastr.success(data.original.data.message, 'Success!', {timeOut: 5000});
-                                window.location.href = "{{URL::to('/admin/student')}}"
+                                location.reload();
                             }
                         },
                     },

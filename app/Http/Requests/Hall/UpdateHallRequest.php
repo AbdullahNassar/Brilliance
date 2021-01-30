@@ -15,7 +15,7 @@ class UpdateHallRequest extends BaseRequest
     {
 
 		$rules = [
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|max:30',
         ];
         return $rules;
     }

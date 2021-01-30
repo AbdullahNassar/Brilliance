@@ -14,9 +14,9 @@ class MarketingLeadHelper{
 	
 	public static function addMarketingLead($request)
 	{
-        $phone_number = MarketingLead::where('phone_number',$row[7])->first();
-        $email = MarketingLead::where('email',$row[8])->first();
-        if(!$phone_number && !$email && $row[0] != 'created_time' && $row[1] != 'campaign_name' && $row[2] != 'form_name' && $row[3] != 'platform' && $row[4] != 'full_name' && $row[5] != 'job_title' && $row[6] != 'company_name' && $row[7] != 'phone_number' && $row[8] != 'email'){
+        $phone_number = MarketingLead::where('phone_number',$request[7])->first();
+        $email = MarketingLead::where('email',$request[8])->first();
+        if(!$phone_number && !$email && $request[0] != 'created_time' && $request[1] != 'campaign_name' && $request[2] != 'form_name' && $request[3] != 'platform' && $request[4] != 'full_name' && $request[5] != 'job_title' && $request[6] != 'company_name' && $request[7] != 'phone_number' && $request[8] != 'email'){
             $lead = MarketingLead::create([
                 'created_time' => $request['created_time'],
                 'campaign_name' => $request['campaign_name'],
