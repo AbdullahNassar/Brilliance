@@ -33,13 +33,14 @@ return [
     'facebook' => [
         'client_id' => '520376805543414',
         'client_secret' => 'bc2bfe68976bdd5b6903f43fa7ae2a14',
-        'redirect' => 'https://edu.marj3.com/auth/facebook/callback',
+        'redirect' => 'http://system.brilliance-edu.org/',
     ],
 
     'google' => [
-        'client_id' => '502352632908-tt35ku5r0o2aa6iids8pi3732ub3pg76.apps.googleusercontent.com',
-        'client_secret' => '7AzkuWWSoY0ZfaZT8RWOAk2P',
-        'redirect' => 'https://edu.marj3.com/auth/google/callback',
+        'app_name' => 'Brilliance System',
+        'client_id' => '350399918720-rmpdjglj0bhvlnvb5bahl9v4d4eu1sn9.apps.googleusercontent.com',
+        'client_secret' => '6Is1fBSpvYSsmvwZVIbfgJkI',
+        'api_key' => 'AIzaSyBr-3pFRzMBr6T6TZobFmDJKtG9retJBu4',
     ],
 
 ];

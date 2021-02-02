@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="{{asset('vendors/css/bracket.css')}}">
 @endsection
 @section('content')
-      @if(Auth::user()->role == "admin")
+      @if(Auth::user()->role == "admin" || Auth::user()->role == "ceo")
         <div class="pd-30">
           <h4 class="tx-gray-800 mg-b-5">Dashboard</h4>
           <!--<p class="mg-b-0">Do big things with Med Troops, the responsive bootstrap 4 admin template.</p>-->

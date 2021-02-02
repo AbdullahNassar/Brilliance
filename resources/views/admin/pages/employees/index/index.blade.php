@@ -6,7 +6,7 @@
     <meta name="author" content="ThemePixels">
     <meta name="csrf_token" content="{{csrf_token()}}">
 @endsection
-@section('title','Contacts')
+@section('title','Employees')
 @section('styles')
     <link href="{{asset('vendors/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/lib/Ionicons/css/ionicons.css')}}" rel="stylesheet">
@@ -21,7 +21,6 @@
     <link href="{{asset('vendors/lib/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/lib/ion.rangeSlider/css/ion.rangeSlider.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/lib/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
-    
     <!-- Bracket CSS -->
     <link rel="stylesheet" href="{{asset('vendors/css/dropzone.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/css/bracket.css')}}">
@@ -33,57 +32,45 @@
     <div class="br-pageheader pd-y-15 pd-l-20">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
             <a class="breadcrumb-item" href="{{route('dashboard')}}">Brilliance</a>
-            <a class="breadcrumb-item" href="{{route('admin.sales.manager.leads')}}">Contacts</a>
-            <span class="breadcrumb-item active">Contacts Table</span>
+            <a class="breadcrumb-item" href="{{route('admin.employees')}}">Employees</a>
+            <span class="breadcrumb-item active">Employees Table</span>
         </nav>
         </div><!-- br-pageheader -->
         <div class="br-pagebody">
             <div class="br-section-wrapper">
-                <a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" style="margin-right: 5px;" href="{{route('tickets.add')}}">Add New Ticket</a>
-                <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Contacts Table</h6>
+                <a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" href="{{route('employees.add')}}">Add New Student</a>
+                <a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" style="margin-right:15px;" href="{{route('student.grades')}}">Add Student Grades</a>
+                <a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" style="margin-right:15px;" href="{{route('admin.employees.schedules')}}">Add Student Schedules</a>
+                <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">employees Table</h6>
                 <p class="mg-b-25 mg-lg-b-50">Searching, ordering and paging goodness will be immediately added to the table.</p>
-                    <div class="table-wrapper">
-                        <table id="leads_datatable" class="table display responsive nowrap">
-                            <thead>
+                <div class="table-wrapper">
+                    <table id="employees_datatable" class="table display responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($employees as $item)
                                 <tr>
-                                    <th></th>
-                                    <th>Full Name</th>
-                                    <th>Mobile</th>
-                                    <th>Email</th>
-                                    <th>Job Title</th>
-                                    <th>Company</th>
+                                    <th>{{$loop->index +1}}</th>
+                                    <th><a href="{{ route('employees.profile' , ['id' => $item->id]) }}">{{$item->name}} {{$item->last_name}} </a></th>
+                                    <th>{{$item->mobile1}}</th>
+                                    <th>{{$item->email1}}</th>
+                                    <th>
+                                        <a href="{{ route('employees.edit' , ['id' => $item->id]) }}" class="text-primary edit" title="Edit Student"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('admin.employees.upload' , ['id' => $item->id]) }}" class="text-primary edit" title="Upload Student Documents"><i class="fa fa-upload"></i></a>     
+                                        <!--<a title="Delete Student" href="#" class="text-danger btndelet" id="{{$item->id}}"><i class="fa fa-close"></i></a>-->  
+                                    </th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($leads as $item)
-                                    <tr>
-                                        <td></td>
-                                        <th>{{$item->full_name}}</th>
-                                        <th>{{$item->phone_number}}</th>
-                                        <th>{{$item->email}}</th>
-                                        <th>{{$item->job_title}}</th>
-                                        <th>{{$item->company_name}}</th>
-                                        <!--<th>
-                                            <a href="{{ route('sales.activity.add' , ['id' => $item->id]) }}" class="text-primary edit" title="Add Activity"><i class="fa fa-edit"></i></a> 
-                                        </th>-->
-                                    </tr>
-                                @endforeach
-                                @foreach($applicants as $item)
-                                    <tr>
-                                        <td></td>
-                                        <th>{{$item->name}} {{$item->last_name}}</th>
-                                        <th>{{$item->mobile1}}</th>
-                                        <th>{{$item->email1}}</th>
-                                        <th>{{$item->job}}</th>
-                                        <th>@if($item->corporate_id != null) {{$item->corporate->name}} @else Empty @endif</th>
-                                        <!--<th>
-                                            <a href="{{ route('sales.activity.add' , ['id' => $item->id]) }}" class="text-primary edit" title="Add Activity"><i class="fa fa-edit"></i></a> 
-                                        </th>-->
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div><!-- table-wrapper -->
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div><!-- table-wrapper -->
             </div><!-- br-section-wrapper -->
         </div><!-- br-pagebody -->
         <div id="delete-modal" class="modal fade" role="dialog">
@@ -104,4 +91,4 @@
             </div>
         </div>  
 @endsection
-@include('admin.pages.sales.contacts.scripts')
+@include('admin.pages.employees.index.scripts')

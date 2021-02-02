@@ -1,13 +1,16 @@
-@extends('admin.layouts.master')
-@section('meta')
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
     <meta name="csrf_token" content="{{csrf_token()}}">
-@endsection
-@section('title','Sales Leads')
-@section('styles')
+    <!-- Site Title -->
+    <title>Sales Leads</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{asset('vendors/img/favicon.png')}}" sizes="16x16">
     <link href="{{asset('vendors/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/lib/Ionicons/css/ionicons.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/lib/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet">
@@ -27,15 +30,15 @@
     <link rel="stylesheet" href="{{asset('vendors/css/bracket.css')}}">
     <link href="{{asset('vendors/toastr/toastr.min.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/css/float-labels.css')}}" rel="stylesheet">
-@endsection
-@section('content')
-    <!-- br-mainpanel -->
-    <div class="br-pageheader pd-y-15 pd-l-20">
-        <nav class="breadcrumb pd-0 mg-0 tx-12">
-            <a class="breadcrumb-item" href="{{route('dashboard')}}">Brilliance</a>
-            <a class="breadcrumb-item" href="{{route('marketing.sales.leads')}}">Sales Leads</a>
-            <span class="breadcrumb-item active">Sales Leads Table</span>
-        </nav>
+  </head>
+
+  <body>
+        <div class="br-pageheader pd-y-15 pd-l-20">
+            <nav class="breadcrumb pd-0 mg-0 tx-12">
+                <a class="breadcrumb-item" href="{{route('dashboard')}}">Brilliance</a>
+                <a class="breadcrumb-item" href="{{route('marketing.sales.leads')}}">Sales Leads</a>
+                <span class="breadcrumb-item active">Sales Leads Table</span>
+            </nav>
         </div><!-- br-pageheader -->
         <div class="br-pagebody">
             <div class="br-section-wrapper">
@@ -52,7 +55,7 @@
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='marketing.leads.interested') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('marketing.leads.interested')}}">Interested @if($interested > 0) ({{$interested}}) @endif</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='marketing.leads.outOfReach') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('marketing.leads.outOfReach')}}">Out Of Reach @if($outofreach > 0) ({{$outofreach}}) @endif</a>
                 <a style="margin-right: 5px; @if(Route::currentRouteName()=='marketing.leads.closed') background-color: #aa1916; color: #ffffff; @endif" class="btn btn-oblong btn-outline-primary mg-b-10 float-left" href="{{route('marketing.leads.closed')}}">Not Interested @if($closed > 0) ({{$closed}}) @endif</a>
-                    <div class="table-wrapper">
+                    <div class="table-wrapper"  id="printableArea">
                         <table id="leads_datatable" class="table display responsive nowrap">
                             <thead>
                                 <tr>
@@ -63,6 +66,8 @@
                                     <th>Advisor</th>
                                     <th>Status</th>
                                     <th>Date</th>
+                                    <th>Campaign</th>
+                                    <th>Source</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,12 +80,133 @@
                                         <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->user->name}}</th>
                                         <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->activity_status}} @if($item->next_call != null) | {{$item->next_call}} @endif</th>
                                         <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->created_time}}</th>
+                                        <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->campaign_name}}</th>
+                                        <th @if($item->temperature == "Cold") style="color:#5baefb !important;" @elseif($item->temperature == "Warm") style="color:#f3d67b !important;" @elseif($item->temperature == "Hot") style="color:#fd3131 !important;" @endif>{{$item->platform}}</th>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div><!-- table-wrapper -->
             </div><!-- br-section-wrapper -->
-        </div><!-- br-pagebody -->
-@endsection
-@include('admin.pages.marketing.sales.scripts')
+            <div class="row row-sm mg-t-20">
+                <div class="col-12" style="text-align: center;">
+                <button id="print"  onclick="printDiv('printableArea')" class="btn btn-oblong btn-outline-primary mg-b-10"><i class="fa fa-print"></i> Print</button>
+                </div>
+              </div>
+        </div>
+        @include('admin.layouts.footer')
+        </div>
+        <script src="{{asset('vendors/lib/jquery/jquery.js')}}"></script>
+        <script src="{{asset('vendors/lib/popper.js/popper.js')}}"></script>
+        <script src="{{asset('vendors/lib/bootstrap/bootstrap.js')}}"></script>
+        <script src="{{asset('vendors/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js')}}"></script>
+        <script src="{{asset('vendors/lib/moment/moment.js')}}"></script>
+        <script src="{{asset('vendors/lib/jquery-ui/jquery-ui.js')}}"></script>
+        <script src="{{asset('vendors/lib/jquery-switchbutton/jquery.switchButton.js')}}"></script>
+        <script src="{{asset('vendors/lib/peity/jquery.peity.js')}}"></script>
+        <script src="{{asset('vendors/lib/highlightjs/highlight.pack.js')}}"></script>
+        <script src="{{asset('vendors/lib/datatables/jquery.dataTables.js')}}"></script>
+        <script src="{{asset('vendors/lib/datatables-responsive/dataTables.responsive.js')}}"></script>
+        <script src="{{asset('vendors/lib/select2/js/select2.min.js')}}"></script>
+        <script src="{{asset('vendors/lib/jt.timepicker/jquery.timepicker.js')}}"></script>
+        <script src="{{asset('vendors/lib/spectrum/spectrum.js')}}"></script>
+        <script src="{{asset('vendors/lib/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
+        <script src="{{asset('vendors/lib/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
+        <script src="{{asset('vendors/lib/ion.rangeSlider/js/ion.rangeSlider.min.js')}}"></script>
+        <script src="{{asset('vendors/js/bootstrap-toggle.min.js')}}"></script>
+        <script src="{{asset('vendors/js/dropzone.js')}}"></script>
+        <script src="{{asset('vendors/js/bracket.js')}}"></script>
+        <script src="{{asset('vendors/js/jquery.nicescroll.min.js')}}"></script>
+        <script src="{{asset('vendors/toastr/toastr.min.js')}}"></script>
+        <script src="{{asset('vendors/js/float-labels.js')}}"></script>
+        <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#imgInp").change(function() {
+                readURL(this);
+            });
+        </script>
+        <script type="text/javascript">
+            /* Nice Scroll 
+            $(document).ready(function() {
+                "use strict";
+                $("html").niceScroll({
+                    scrollspeed: 60,
+                    mousescrollstep: 35,
+                    cursorwidth: 5,
+                    cursorcolor: '#b02e2e54',
+                    cursorborder: 'none',
+                    background: 'rgb(176 46 46 / 38%)',
+                    cursorborderradius: 3,
+                    autohidemode: false,
+                    cursoropacitymin: 0.1,
+                    cursoropacitymax: 1,
+                    zindex: "999",
+                    horizrailenabled: false
+                });
+            });*/
+        </script>
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                var t = $('#leads_datatable').DataTable({
+                    "columnDefs": [ {
+                        "searchable": false,
+                        "orderable": false,
+                        "targets": 0
+                    }],
+                    "columns": [
+                        { "orderable": true },
+                        { "orderable": true },
+                        { "orderable": true },
+                        { "orderable": true },
+                        { "orderable": true },
+                        { "orderable": true },
+                        { "orderable": true },
+                        { "orderable": true },
+                        { "orderable": true },
+                    ],
+                    responsive: true,
+                    "order": [[ 1, 'asc' ]],
+                    "pageLength": 10,
+                    language: {
+                        searchPlaceholder: 'Search...',
+                        sSearch: '',
+                        lengthMenu: 'show _MENU_ items',
+                    }
+                });
+                t.on( 'order.dt search.dt', function () {
+                    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                        cell.innerHTML = i+1;
+                    } );
+                } ).draw();
+            });
+        </script>
+        <script>
+           function printDiv(divName) {
+                var printContents = document.getElementById(divName).innerHTML;
+                var originalContents = document.body.innerHTML;
+    
+                document.body.innerHTML = printContents;
+    
+                window.print();
+    
+                document.body.innerHTML = originalContents;
+            }
+        </script>
+    </body>
+</html>

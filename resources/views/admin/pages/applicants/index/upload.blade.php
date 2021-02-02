@@ -68,7 +68,7 @@
                                                 @endif
                                                 @endforeach
                                                 <td>{{$document->file}}</td>
-                                                <td><a target="_blank" href="{{asset("images/students/documents/$document->file")}}"><i class="fa fa-eye"></i></a></td>
+                                                <td><a target="_blank" href="{{$document->url}}"><i class="fa fa-eye"></i></a></td>
                                                 <td>
                                                 <label class="ckbox">
                                                     <input id="ckbox{{$loop->index+1}}" type="checkbox" checked>
@@ -105,6 +105,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-12" id="progress_bar" style="display:none;">
+                        <div class="progress" id="myProgress">
+                            <div id="myBar" class="progress-bar bg-danger wd-95p" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div><br>
                     </div>
                     <div class="col-lg-12">
                         <button type="submit" class="btn btn-primary center">Save</button>

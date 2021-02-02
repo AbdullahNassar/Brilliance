@@ -4,16 +4,19 @@
     <script src="{{asset('vendors/lib/bootstrap/bootstrap.js')}}"></script>
     <script src="{{asset('vendors/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js')}}"></script>
     <script src="{{asset('vendors/lib/moment/moment.js')}}"></script>
-    <script src="{{asset('vendors/lib/bootstrap-summernote/summernote.min.js')}}"></script>
     <script src="{{asset('vendors/lib/jquery-ui/jquery-ui.js')}}"></script>
     <script src="{{asset('vendors/lib/jquery-switchbutton/jquery.switchButton.js')}}"></script>
     <script src="{{asset('vendors/lib/peity/jquery.peity.js')}}"></script>
     <script src="{{asset('vendors/lib/highlightjs/highlight.pack.js')}}"></script>
+    <script src="{{asset('vendors/lib/datatables/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('vendors/lib/datatables-responsive/dataTables.responsive.js')}}"></script>
     <script src="{{asset('vendors/lib/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('vendors/lib/jt.timepicker/jquery.timepicker.js')}}"></script>
     <script src="{{asset('vendors/lib/spectrum/spectrum.js')}}"></script>
     <script src="{{asset('vendors/lib/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
     <script src="{{asset('vendors/lib/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
+    <script src="{{asset('vendors/lib/ion.rangeSlider/js/ion.rangeSlider.min.js')}}"></script>
+    <script src="{{asset('vendors/js/bootstrap-toggle.min.js')}}"></script>
     <script src="{{asset('vendors/js/dropzone.js')}}"></script>
     <script src="{{asset('vendors/js/bracket.js')}}"></script>
     <script src="{{asset('vendors/js/jquery.nicescroll.min.js')}}"></script>
@@ -21,15 +24,8 @@
     <script src="{{asset('vendors/js/float-labels.js')}}"></script>
     <script src="{{asset('vendors/lib/parsleyjs/parsley.js')}}"></script>
     <script src="{{asset('vendors/js/custom-file-input.js')}}"></script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
     <script type="text/javascript">
-        function readURL1(input) {
+        function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -39,7 +35,7 @@
             }
         }
         $("#imgInp").change(function() {
-            readURL1(this);
+            readURL(this);
         });
     </script>
     <script type="text/javascript">
@@ -60,12 +56,36 @@
                 zindex: "999",
                 horizrailenabled: false
             });
-            
         });*/
     </script>
-
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#employees_datatable').DataTable({
+                "columns": [
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": false },
+                ],
+                responsive: true,
+                "pageLength": 10,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: 'show _MENU_ items',
+                }
+            });
+
             $('.form-layout .form-control').on('focusin', function(){
                 $(this).closest('.form-group').addClass('form-group-active');
             });
@@ -73,30 +93,91 @@
             $('.form-layout .form-control').on('focusout', function(){
                 $(this).closest('.form-group').removeClass('form-group-active');
             });
+    
+            // Input Masks
+            $('#dateMask').mask('99/99/9999');
+    
+            // Time Picker
+            $('#tpBasic0').timepicker({
+                timeFormat: 'h:i A',
+            });
+            $('#tpBasic1').timepicker({
+                timeFormat: 'h:i A',
+            });
+            
+            var delete_id = 0;
+            $(document).on('click', '.btndelet', function(){
+                delete_id = $(this).attr("id");
+                $('#delete-modal').modal('show');
+            });
 
-            $('#upload_form').on('submit', function(event){
-                event.preventDefault();
+            $(document).on('click', '.btndel', function(){
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url:"{{ route('marketing.leads.insertData') }}",
-                    method:"POST",
-                    data:new FormData(this),
+                    url:"{{route('employee.destroy')}}",
+                    mehtod:"get",
+                    data:{id:delete_id},
                     dataType:"json",
-                    cache: false,
-                    contentType : false,
-                    processData: false,
                     success:function(data)
                     {
                         toastr.success(data.original.data.message, 'Success!', {timeOut: 5000});
-                        window.location.href = "{{URL::to('/admin/marketing/leads')}}";
+                        window.location.href = "{{URL::to('/admin/employee')}}"
+                        
                     },
                     error: function(data) { 
                         var error = data.responseJSON.errors;
                         $.each(error, function(k, v) {
                             toastr.error(v, 'Error!', {timeOut: 5000});
                         });
+                    } 
+                })
+            });
+        
+            $('#document_form').on('submit', function(event){
+                event.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url:"{{ route('employee-upload-file') }}",
+                    method:"POST",
+                    data:new FormData(this),
+                    dataType:"json",
+                    cache: false,
+                    contentType : false,
+                    processData: false,
+                    statusCode: {
+                        500: function(data) {
+                            toastr.error(data.responseJSON.message, 'Error!', {timeOut: 5000});
+                        },
+                        
+                        422: function(data) {
+                            var error = data.responseJSON.errors;
+                            $.each(error, function(k, v) {
+                                toastr.error(v, 'Error!', {timeOut: 5000});
+                            });
+                        },
+                        
+                        200: function(data) {
+                            if(data.original.data.status_code == 400){
+                                toastr.error(data.original.data.message, 'Error!', {timeOut: 5000});
+                            }
+
+                            if(data.original.data.status_code == 422){
+                                toastr.error(data.original.data.message, 'Error!', {timeOut: 5000});
+                            }
+
+                            if(data.original.data.status_code == 500){
+                                toastr.error(data.original.data.message, 'Error!', {timeOut: 5000});
+                            }
+                            
+                            if(data.original.data.status_code == 200){
+                                toastr.success(data.original.data.message, 'Success!', {timeOut: 5000});
+                                location.reload(); 
+                            }
+                        },
                     },
                     xhr: function(){
                         // get the native XmlHttpRequest object
@@ -129,6 +210,7 @@
                     }
                 })
             });
+
         });
     </script>
 @endsection

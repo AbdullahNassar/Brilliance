@@ -64,7 +64,7 @@
                                     <th>{{$item->mobile1}}</th>
                                     <th>{{$item->email1}}</th>
                                     <th>
-                                        <a href="{{ route('applicants.edit' , ['id' => $item->id]) }}" class="text-primary edit" title="Edit Applicant"><i class="fa fa-edit"></i></a>
+                                        <!--<a href="{{ route('applicants.edit' , ['id' => $item->id]) }}" class="text-primary edit" title="Edit Applicant"><i class="fa fa-edit"></i></a>-->
                                         <a href="{{ route('admin.applicants.upload' , ['id' => $item->id]) }}" class="text-primary edit" title="Upload Applicant Documents"><i class="fa fa-upload"></i></a>     
                                         <a href="{{ route('applicants.payment' , ['id' => $item->id]) }}" class="text-primary" title="Applicant Payment"><i class="fa fa-money"></i></a> 
                                         <a href="{{ route('applicants.pay' , ['id' => $item->id]) }}" class="text-primary" title="Pay"><i class="fa fa-credit-card"></i></a>   

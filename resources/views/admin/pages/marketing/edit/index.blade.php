@@ -49,7 +49,7 @@
             <input type="hidden" name="marketing_id" value="{{Auth::user()->id}}">
             <input type="hidden" name="lead_id" value="{{$lead->id}}">
             <div class="row mg-b-25">
-              <!--<div class="col-lg-6">
+              <div class="col-lg-6">
                 <div id="fnWrapper" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">
                       <label class="control-label">Created Time</label>
@@ -72,7 +72,7 @@
                       <input class="form-control" type="text" value="{{$lead->form_name}}" name="form_name" data-parsley-class-handler="#fnWrapper1" required autocomplete="off">
                   </div>
                 </div>
-              </div>-->
+              </div>
               <div class="col-lg-6">
                 <div id="fnWrapper2" class="parsley-input">
                   <div class="form-group pmd-textfield pmd-textfield-floating-label">

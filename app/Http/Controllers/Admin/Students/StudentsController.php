@@ -529,6 +529,28 @@ class StudentsController extends MainController
         }
         return view('admin.pages.print.invoice.index', compact('student','payments','now','total_egp','total_euro','total_usd'));
     }
+    
+    public function invoice($id,$date){
+        $now = Carbon::now()->format('j-m-Y');
+        $payments = Cash::where('date',$date)->get();
+        $p = Cash::find($id);
+        $student = Student::find($p->student_id);
+        $total_egp = 0;
+        $total_euro = 0;
+        $total_usd = 0;
+        foreach($payments as $payment){
+            if($payment->currency == "egp"){
+                $total_egp += $payment->amount;
+            }
+            if($payment->currency == "euro"){
+                $total_euro += $payment->amount;
+            }
+            if($payment->currency == "usd"){
+                $total_usd += $payment->amount;
+            }
+        }
+        return view('admin.pages.print.invoice.index', compact('student','payments','now','total_egp','total_euro','total_usd'));
+    }
 
     public function multipay(){
         $students = Student::all();

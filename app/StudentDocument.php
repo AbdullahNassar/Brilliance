@@ -9,7 +9,7 @@ class StudentDocument extends Model
 {
     use SoftDeletes;
     protected $table = 'student_documents';
-    protected $fillable = ['file','student_id','document_id'];
+    protected $fillable = ['file','student_id','document_id','url'];
 
     public function student()
     {

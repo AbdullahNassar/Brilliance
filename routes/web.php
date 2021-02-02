@@ -24,6 +24,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/markAsRead', 'HomeController@markAsRead')->name('markAsRead');
         Route::get('/speaks', 'HomeController@speaks')->name('speaks');
         Route::get('/profile/{id}', 'HomeController@profile')->name('admin.profile');
+        Route::get('/glogin', 'GoogleController@googleLogin')->name('glogin');
+        Route::post('/upload-file', ['as' => 'upload-file', 'uses' => 'GoogleController@uploadFileUsingAccessToken']);
+        Route::post('/employee-upload-file', ['as' => 'employee-upload-file', 'uses' => 'GoogleController@uploadEmloyeeFile']);
 
         Route::group(['middleware' =>['permission:admin'],'prefix' => 'programs', 'namespace' => 'Programs'], function () {
             Route::get('/', ['as' => 'admin.programs', 'uses' => 'ProgramsController@index']);
@@ -195,6 +198,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             Route::post('/add-multi-pay', ['as' => 'students.addmultipay', 'uses' => 'StudentsController@addmultipay']);
             Route::get('/edit-payment/{id}', ['as' => 'plan.edit', 'uses' => 'StudentsController@plan']);
             Route::post('/edit-pay', ['as' => 'payment.edit', 'uses' => 'StudentsController@editPlan']);
+            Route::get('/invoice/{id}/{date}', ['as' => 'students.invoice', 'uses' => 'StudentsController@invoice']);
         });
 
         Route::group(['prefix' => 'applicants', 'namespace' => 'Students'], function () {

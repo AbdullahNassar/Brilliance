@@ -1,5 +1,5 @@
 @section('scripts')
-    @if(Auth::user()->role == "admin")
+    @if(Auth::user()->role == "admin" || Auth::user()->role == "ceo")
         <script src="{{asset('vendors/lib/jquery/jquery.js')}}"></script>
         <script src="{{asset('vendors/lib/jquery/jquery.js')}}"></script>
         <script src="{{asset('vendors/lib/popper.js/popper.js')}}"></script>

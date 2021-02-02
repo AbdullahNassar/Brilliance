@@ -52,22 +52,22 @@ class MarketingLeadsController extends MainController
     }
 
     public function leadsReport(){
-        $leads = MarketingLead::all();
+        $leads = MarketingLead::orderBy('created_at','DESC')->get();
         return view('admin.pages.reports.marketing.leads.index', compact('leads'));
     }
 
     public function ticketsReport(){
-        $leads = SalesTicket::all();
+        $leads = SalesTicket::orderBy('created_at','DESC')->get();
         return view('admin.pages.reports.marketing.tickets.index', compact('leads'));
     }
 
     public function tickets(){
-        $leads = SalesTicket::all();
+        $leads = SalesTicket::orderBy('created_at','DESC')->get();
         return view('admin.pages.marketing.tickets.index', compact('leads'));
     }
 
     public static function sales(){
-        $leads = SalesLead::all();
+        $leads = SalesLead::orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -109,12 +109,12 @@ class MarketingLeadsController extends MainController
     }
 
     public function assigned(){
-        $leads = MarketingLead::where('status',1)->get();
+        $leads = MarketingLead::where('status',1)->orderBy('created_at','DESC')->get();
         return view('admin.pages.marketing.index.index', compact('leads'));
     }
 
     public function unassigned(){
-        $leads = MarketingLead::where('status',0)->get();
+        $leads = MarketingLead::where('status',0)->orderBy('created_at','DESC')->get();
         $users = User::where('role','sales-manager')->get();
         return view('admin.pages.marketing.index.index', compact('leads','users'));
     }
@@ -154,7 +154,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function followleads(){
-        $leads = SalesLead::where('activity_status','Time/ Not Decided')->get();
+        $leads = SalesLead::where('activity_status','Time/ Not Decided')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -169,7 +169,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function potentialleads(){
-        $leads = SalesLead::where('activity_status','Potential')->get();
+        $leads = SalesLead::where('activity_status','Potential')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -184,7 +184,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function holdleads(){
-        $leads = SalesLead::where('activity_status','Hold')->get();
+        $leads = SalesLead::where('activity_status','Hold')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -199,7 +199,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function noAnswerleads(){
-        $leads = SalesLead::where('activity_status','No Answer')->get();
+        $leads = SalesLead::where('activity_status','No Answer')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -214,7 +214,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function interestedleads(){
-        $leads = SalesLead::where('activity_status','Interested')->get();
+        $leads = SalesLead::where('activity_status','Interested')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -229,7 +229,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function outOfReachleads(){
-        $leads = SalesLead::where('activity_status','Out Of Reach')->get();
+        $leads = SalesLead::where('activity_status','Out Of Reach')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -244,7 +244,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function closedleads(){
-        $leads = SalesLead::where('activity_status','Not Interested')->get();
+        $leads = SalesLead::where('activity_status','Not Interested')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -259,7 +259,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function warm(){
-        $leads = SalesLead::where('temperature','Warm')->get();
+        $leads = SalesLead::where('temperature','Warm')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -274,7 +274,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function cold(){
-        $leads = SalesLead::where('temperature','Cold')->get();
+        $leads = SalesLead::where('temperature','Cold')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();
@@ -289,7 +289,7 @@ class MarketingLeadsController extends MainController
     }
 
     public static function hot(){
-        $leads = SalesLead::where('temperature','Hot')->get();
+        $leads = SalesLead::where('temperature','Hot')->orderBy('created_at','DESC')->get();
         $follow = SalesLead::where('activity_status','Time/ Not Decided')->count();
         $potential = SalesLead::where('activity_status','Potential')->count();
         $hold = SalesLead::where('activity_status','Hold')->count();

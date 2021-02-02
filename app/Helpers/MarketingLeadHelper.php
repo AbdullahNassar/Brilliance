@@ -14,9 +14,9 @@ class MarketingLeadHelper{
 	
 	public static function addMarketingLead($request)
 	{
-        $phone_number = MarketingLead::where('phone_number',$request[7])->first();
-        $email = MarketingLead::where('email',$request[8])->first();
-        if(!$phone_number && !$email && $request[0] != 'created_time' && $request[1] != 'campaign_name' && $request[2] != 'form_name' && $request[3] != 'platform' && $request[4] != 'full_name' && $request[5] != 'job_title' && $request[6] != 'company_name' && $request[7] != 'phone_number' && $request[8] != 'email'){
+        $phone_number = MarketingLead::where('phone_number',$request['phone_number'])->first();
+        $email = MarketingLead::where('email',$request['email'])->first();
+        if(!$phone_number && !$email){
             $lead = MarketingLead::create([
                 'created_time' => $request['created_time'],
                 'campaign_name' => $request['campaign_name'],
@@ -28,27 +28,8 @@ class MarketingLeadHelper{
                 'phone_number' => $request['phone_number'],
                 'email' => $request['email'],
                 'marketing_id' => $request['marketing_id'],
-                'status' => 1
+                'status' => 0
             ]);
-            $users = User::where('role','Sales Manager')->get();
-            foreach($users as $user){
-                SalesLead::create([
-                    'created_time' => $request['created_time'],
-                    'campaign_name' => $request['campaign_name'],
-                    'form_name' => $request['form_name'],
-                    'platform' => $request['platform'],
-                    'full_name' => $request['full_name'],
-                    'job_title' => $request['job_title'],
-                    'company_name' => $request['company_name'],
-                    'phone_number' => $request['phone_number'],
-                    'email' => $request['email'],
-                    'sales_id' => $user->id,
-                    'program_id' => $request['program_id'],
-                    'diplom_id' => $request['diplom_id'],
-                    'status' => 0
-                ]);
-            }
-            
             if($lead){
                 return ['data' => $lead];
             }  

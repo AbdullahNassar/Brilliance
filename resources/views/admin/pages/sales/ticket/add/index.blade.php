@@ -42,7 +42,6 @@
       </div>
       <div class="br-pagebody">
         <div class="br-section-wrapper">
-        <h4 style="color:#000;">Name : {{$lead->full_name}}</h4>
           <div class="form-layout form-layout-1">
             <form class="parsley-style-1" id="ticket_form" method="post" data-parsley-validate>
             {{csrf_field()}}

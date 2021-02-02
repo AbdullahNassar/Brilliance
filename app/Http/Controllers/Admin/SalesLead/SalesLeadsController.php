@@ -66,7 +66,7 @@ class SalesLeadsController extends MainController
     }
 
     public static function contacts(){
-        $leads = SalesLead::get()->where('activity_status','=',"Not Interested")->orderBy('created_at','DESC');
+        $leads = SalesLead::where('activity_status','=',"Not Interested")->orderBy('created_at','DESC')->get();
         $applicants = DB::table('students')->where('deleted_at','!=',null)->get();
         return view('admin.pages.sales.contacts.index', compact('leads','applicants'));
     }
@@ -90,7 +90,7 @@ class SalesLeadsController extends MainController
 
     public static function manager(){
         $user = User::find(Auth::user()->id);
-        $leads = SalesLead::where('manager_id',$user->id)->where('status','!=',5)->orderBy('created_at','DESC')->get();
+        $leads = SalesLead::where('manager_id',$user->id)->where('status','!=',5)->orWhere('sales_id',$user->id)->orderBy('created_at','DESC')->get();
         $users = User::where('role','sales')->get();
         return view('admin.pages.sales.index.index', compact('leads','users'));
     }

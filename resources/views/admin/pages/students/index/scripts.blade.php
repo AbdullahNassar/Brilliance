@@ -224,30 +224,12 @@
             });
         
             $('#document_form').on('submit', function(event){
-                document.getElementById("progress_bar").style.display = "block";
-                var i = 0;
-                if (i == 0) {
-                    i = 1;
-                    var elem = document.getElementById("myBar");
-                    var width = 10;
-                    var id = setInterval(frame, 10);
-                    function frame() {
-                    if (width >= 100) {
-                        clearInterval(id);
-                        i = 0;
-                    } else {
-                        width++;
-                        elem.style.width = width + "%";
-                        elem.innerHTML = width  + "%";
-                    }
-                    }
-                }
                 event.preventDefault();
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url:"{{ route('documents.upload') }}",
+                    url:"{{ route('upload-file') }}",
                     method:"POST",
                     data:new FormData(this),
                     dataType:"json",
@@ -281,10 +263,39 @@
                             
                             if(data.original.data.status_code == 200){
                                 toastr.success(data.original.data.message, 'Success!', {timeOut: 5000});
-                                location.reload();
+                                location.reload(); 
                             }
                         },
                     },
+                    xhr: function(){
+                        // get the native XmlHttpRequest object
+                        var xhr = $.ajaxSettings.xhr() ;
+                        // set the onprogress event handler
+                        xhr.upload.onprogress = function(evt){
+                             document.getElementById("progress_bar").style.display = "block";
+                                var i = 0;
+                                if (i == 0) {
+                                    i = 1;
+                                    var elem = document.getElementById("myBar");
+                                    var width = 10;
+                                    var id = setInterval(frame, 10);
+                                    function frame() {
+                                    if (width >= 100) {
+                                        clearInterval(id);
+                                        i = 0;
+                                    } else {
+                                        width++;
+                                        elem.style.width = width + "%";
+                                        elem.innerHTML = width  + "%";
+                                    }
+                                    }
+                                }
+                        } ;
+                        // set the onload event handler
+                        xhr.upload.onload = function(){ console.log('DONE!') } ;
+                        // return the customized object
+                        return xhr ;
+                    }
                 })
             });
 

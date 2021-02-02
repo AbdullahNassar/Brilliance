@@ -45,23 +45,34 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            $('#leads_datatable').DataTable({
+            var t = $('#leads_datatable').DataTable({
+                "columnDefs": [ {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 0
+                }],
                 "columns": [
                     { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
                     { "orderable": true },
-                    { "orderable": false },
+                    { "orderable": true },
                 ],
                 responsive: true,
-                "pageLength": 25,
+                "order": [[ 1, 'asc' ]],
+                "pageLength": 10,
                 language: {
                     searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: 'show _MENU_ items',
                 }
             });
+            t.on( 'order.dt search.dt', function () {
+                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                    cell.innerHTML = i+1;
+                } );
+            } ).draw();
         });
     </script>
 @endsection

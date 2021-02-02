@@ -39,7 +39,7 @@
         </div><!-- br-pageheader -->
         <div class="br-pagebody">
             <div class="br-section-wrapper">
-                @if(Route::currentRouteName()=='admin.sales.manager.leads')<a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" href="{{route('sales.leads.upload')}}">Upload Leads</a>@endif
+                <!--@if(Route::currentRouteName()=='admin.sales.manager.leads')<a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" href="{{route('sales.leads.upload')}}">Upload Leads</a>@endif-->
                 <a class="btn btn-oblong btn-outline-primary mg-b-10 float-right" style="margin-right: 5px;" href="{{route('tickets.add')}}">Add New Ticket</a>
                 <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Sales Leads Table</h6>
                 <p class="mg-b-25 mg-lg-b-50">Searching, ordering and paging goodness will be immediately added to the table.</p>

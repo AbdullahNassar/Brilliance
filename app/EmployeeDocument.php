@@ -5,19 +5,19 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class StudentDocument extends Model
+class EmployeeDocument extends Model
 {
     use SoftDeletes;
-    protected $table = 'student_documents';
-    protected $fillable = ['file','student_id','document_id'];
+    protected $table = 'employee_documents';
+    protected $fillable = ['file','employee_id','document_id','url'];
 
-    public function student()
+    public function employee()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Employee::class,'employee_id');
     }
 
     public function requiredDocument()
     {
-        return $this->belongsTo(StudentRequiredDocument::class);
+        return $this->belongsTo(EmployeeRequiredDocument::class,'document_id');
     }
 }

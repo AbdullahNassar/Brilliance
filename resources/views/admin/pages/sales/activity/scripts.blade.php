@@ -50,15 +50,25 @@
     <script type="text/javascript">
         function statusFunction() {
             var status = document.getElementById("status");
-            if (status.value == 'Potential' || status.value == 'Hold' || status.value == 'Interested'){
+            if (status.value == 'Potential'){
+                $('#temperature').empty();
+                $('#temperature').append('<option></option><option value="Hot">Hot</option>');
+                document.getElementById('rate').disabled = false;
+                document.getElementById('temperature').disabled = false;
+                document.getElementById('next_call').disabled = false;
+            } else if (status.value == 'Hold' || status.value == 'Interested'){
+                $('#temperature').empty();
+                $('#temperature').append('<option></option><option value="Hot">Hot</option><option value="Warm">Warm</option><option value="Hot">Hot</option>');
                 document.getElementById('rate').disabled = false;
                 document.getElementById('temperature').disabled = false;
                 document.getElementById('next_call').disabled = false;
             } else if (status.value == 'Time/ Not Decided' || status.value == 'No Answer' || status.value == 'Out Of Reach'){
+                $('#temperature').empty();
                 document.getElementById('rate').disabled = true;
                 document.getElementById('temperature').disabled = true;
                 document.getElementById('next_call').disabled = false;
             } else if (status.value == 'Not Interested' || status.value == 'Student' || status.value == 'Applicant'){
+                $('#temperature').empty();
                 document.getElementById('rate').disabled = true;
                 document.getElementById('temperature').disabled = true;
                 document.getElementById('next_call').disabled = true;

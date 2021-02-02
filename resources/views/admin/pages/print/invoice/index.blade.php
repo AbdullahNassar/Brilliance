@@ -49,9 +49,10 @@
                     <h4 class="tx-gray-800 mg-b-5">Payment Plan</h4>
                 </div>
                 <div class="col-md-12">
+                    <h4 class="tx-gray-800 mg-b-5">Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
                   <!--<img src="{{asset('vendors/img/logo.png')}}" style="max-width: 260px;">-->
                   <div class="bd rounded table-responsive">
-                    <h4 class="tx-gray-800 mg-b-5">Name : {{$student->name}} {{$student->middle_name}} {{$student->last_name}}</h4>
+                    
                     <!--<p class="mg-b-0">Do big things with Med Troops, the responsive bootstrap 4 admin template.</p>-->
                     <table class="table table-bordered" style="padding-bottom: 0; margin-bottom: 0;">
                     <thead>
